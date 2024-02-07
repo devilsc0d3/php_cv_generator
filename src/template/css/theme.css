@@ -1,0 +1,9 @@
+:root {
+    --primary-color: rgb(228, 250, 255); /* blue */
+    --secondary-color: #0372B2;; /* gray */
+    --tertiary-color: #00e7e7; /* light blue */
+    --quaternary-color: #00929f; /* dark blue */
+    --quinary-color: #ffffff; /* white */
+    --senary-color: #000000; /* black */
+    --septenary-color: #00e7e7; /* light blue */
+}
