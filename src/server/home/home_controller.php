@@ -6,6 +6,19 @@ if (isset($_SESSION['id'])) {
     $presets = getPresets();
 }
 
+if (isset($_POST['cvs'])) {
+    $_SESSION['cv_id'] = $_POST['cvs'];
+
+    header('Location: newCV.php');
+}
+
+if(isset($_POST['convert'])) {
+    $preset_id = $_POST['preset'];
+    $template = $_POST['template'];
+    echo $preset_id;
+    echo $template;
+}
+
 
 if (isset($_POST['send'])) {
    addPreset($_SESSION['id'],$_POST['name']);
