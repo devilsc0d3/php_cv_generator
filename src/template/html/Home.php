@@ -81,16 +81,6 @@ if (!isset($_SESSION['mdp'])) {
                         <input type="radio" name="template" value="template3">
                     </div>
                     <input type="submit" class="convert" value="convert to pdf" name="convert">
-                    <?php
-
-                    if(isset($_POST['convert'])) {
-                        $preset_id = $_POST['preset'];
-                        $template = $_POST['template'];
-                        echo $preset_id;
-                        echo $template;
-                    }
-
-                    ?>
             </section>
         </section>
         </form>

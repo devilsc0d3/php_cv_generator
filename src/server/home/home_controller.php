@@ -1,6 +1,7 @@
 <?php
 $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
 session_start();
+use Dompdf\Dompdf;
 
 if (isset($_SESSION['id'])) {
     $presets = getPresets();
@@ -13,12 +14,27 @@ if (isset($_POST['cvs'])) {
 }
 
 if(isset($_POST['convert'])) {
-    $preset_id = $_POST['preset'];
-    $template = $_POST['template'];
-    echo $preset_id;
-    echo $template;
+    $_SESSION['cv_idg'] = $_POST['preset'];
+
+    $_SESSION['template'] = $_POST['template'];
+    pdf($_POST['template'] . '.php');
+//    header('Location: generate.php');
+
 }
 
+
+function pdf($template)
+{
+    require_once '../../dompdf/autoload.inc.php';
+    $dompdf = new Dompdf();
+    ob_start();
+    require_once $template;
+    $html = ob_get_clean();
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4', 'portrait');
+    $dompdf->render();
+    $dompdf->stream('cv.pdf');
+}
 
 if (isset($_POST['send'])) {
    addPreset($_SESSION['id'],$_POST['name']);
