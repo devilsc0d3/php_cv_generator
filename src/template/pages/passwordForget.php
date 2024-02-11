@@ -9,8 +9,12 @@ include '../../server/passwordForget/passwordForget_controller.php'
 </head>
 <body>
     <form action="" method='POST'>
-        <input type="email" name="mail"  autocomplete="off">
-        <input type="text" name="pseudo" autocomplete="off">
+        <label>
+            <input type="email" name="mail"  autocomplete="off">
+        </label>
+        <label>
+            <input type="text" name="pseudo" autocomplete="off">
+        </label>
         <input type="submit" value="Send" name='send' autocomplete="off">
     </form>
     <a href="login.php"><p>avez-vous deja un compte</p></a>

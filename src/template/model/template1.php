@@ -8,7 +8,6 @@
     <section>
         <h1>Hobbies</h1>
         <?php
-            session_start();
             $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
             $req = $bdd->prepare('SELECT * FROM hobbies where id_cv = ?');
             $req->execute(array($_SESSION['cv_idg']));

@@ -23,7 +23,7 @@ function isSpecialCharacter($string)
     if (strlen($string) >= 8) {
         return true;
     }
-    return false;
+    return "le mot de passe doit contenir au moins 8 caractères";
 }
 
 function pseudoIsEmpty($pseudo)

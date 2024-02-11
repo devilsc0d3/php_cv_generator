@@ -1,5 +1,5 @@
 <?php
-include '../../server/register/register_controller.php'
+include '../../server/authentication/register_controller.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">

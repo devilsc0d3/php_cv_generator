@@ -14,9 +14,11 @@ include "../../server/home/home_controller.php";
 <header>
     <h1>CvGeneratorPhp</h1>
     <?php
-    if (isset($_SESSION['mdp'])) {
+    if (isset($_SESSION['pseudo'])) {
         echo '<a href="logout.php"><h1>logout</h1></a>';
-        echo '<input type="submit" value="delete account" name="delete">';
+        echo '<form action="" method="post">';
+        echo '<input type="submit" value="delete_account" name="delete">';
+        echo '</form>';
     }
     ?>
 </header>
@@ -45,24 +47,23 @@ if (!isset($_SESSION['mdp'])) {
             foreach ($presets as $preset) {
                 echo "<div class='glass'>";
                 echo "<input type='hidden' name='preset_id' value='" . $preset['id'] . "'>";
-                echo "<button type='submit' name='cvs' value='" . $preset['id'] . "'>";
+                echo "<button type='submit' name='profile' value='" . $preset['id'] . "'>";
                 echo "<p>" . $preset['title'] . "</p>";
                 echo "</button>";
                 ?>
-                <input type='radio' name='preset' value='<?php echo $preset['id']; ?>'>
+                <label>
+                    <input type='radio' name='preset' value='<?php echo $preset['id']; ?>'>
+                </label>
 
                 <?php
                 echo '</div>';
             }
             ?>
-            <a href="newCV.php">
-                <div class="glass">
-                    <p>+</p>
-                </div>
-            </a>
             <div class="glass">
+                <label>
                     <input type="text" placeholder="name of preset" name="name">
-                    <input type="submit" value="send" name="send">
+                </label>
+                <input type="submit" value="send" name="send">
             </div>
         </section>
 
@@ -72,13 +73,19 @@ if (!isset($_SESSION['mdp'])) {
             </div>
             <section class="template">
                     <div class="glass2">
-                        <input type="radio" name="template" value="template1">
+                        <label>
+                            <input type="radio" name="template" value="template1">
+                        </label>
                     </div>
                     <div class="glass2">
-                        <input type="radio" name="template" value="template2">
+                        <label>
+                            <input type="radio" name="template" value="template2">
+                        </label>
                     </div>
                     <div class="glass2">
-                        <input type="radio" name="template" value="template3">
+                        <label>
+                            <input type="radio" name="template" value="template3">
+                        </label>
                     </div>
                     <input type="submit" class="convert" value="convert to pdf" name="convert">
             </section>

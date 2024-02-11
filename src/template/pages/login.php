@@ -1,5 +1,5 @@
 <?php
-include '../../server/login/login_controller.php'
+include '../../server/authentication/login_controller.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">

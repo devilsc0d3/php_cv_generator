@@ -1,6 +1,6 @@
 <?php
-include 'register_service.php';
-include 'register_middleware.php';
+include 'user_service.php';
+include 'user_middleware.php';
 session_start();
 
 global $bdd;
@@ -13,7 +13,7 @@ if (isset($_POST['send'])) {
 //    $mdp = password_h540.ash($_POST['mdp'], PASSWORD_DEFAULT);  // Utilisation de password_hash
     $mail = htmlspecialchars($_POST['mail']);
 
-    $errors = controller($mail, $mdp, $pseudo);
+    $errors = controller($mail, $mdp);
 
     $containsOtherThanOne = false;
 
@@ -44,26 +44,27 @@ if (isset($_POST['send'])) {
         $errors = [$errors];
     }
 }
-function controller($mail, $mdp, $pseudo)
-{
-    $errors = [];
 
-    $middlewares = [
-        mailIsEmpty($mail),
-        pseudoIsEmpty($pseudo),
-        passwordIsEmpty($mdp),
-        lenMinimum($mdp),
-//        isSpecialCharacter($mdp),
-//        isLowercaseAndUppercaseDigit($mdp),
-        emailValid($mail),
-    ];
-
-    foreach ($middlewares as $result) {
-        if ($result !== null) {
-            $errors[] = $result;
-        }
-    }
-
-    return $errors;
-}
+//function registerController($mail, $mdp, $pseudo): array
+//{
+//    $errors = [];
+//
+//    $middlewares = [
+//        mailIsEmpty($mail),
+//        pseudoIsEmpty($pseudo),
+//        passwordIsEmpty($mdp),
+//        lenMinimum($mdp),
+////        isSpecialCharacter($mdp),
+////        isLowercaseAndUppercaseDigit($mdp),
+//        emailValid($mail),
+//    ];
+//
+//    foreach ($middlewares as $result) {
+//        if ($result !== null) {
+//            $errors[] = $result;
+//        }
+//    }
+//
+//    return $errors;
+//}
 

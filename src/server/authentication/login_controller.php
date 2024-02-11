@@ -1,23 +1,12 @@
 <?php
-include 'login_middleware.php';
-include 'login_service.php';
-
-
-function send() {
-    $to = "faureleo123@gmail.com";
-    $subject = "My subject";
-    $txt = "Hello world!";
-    $headers = "From: webmaster@example.com";
-
-    mail($to, $subject, $txt, $headers);
-}
+include 'user_middleware.php';
+include 'user_service.php';
 
 $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
     session_start();
     if (isset($_POST['send'])) {
         $pseudo = htmlspecialchars($_POST['pseudo']);
         $mdp = sha1($_POST['mdp']);
-//        send();
 
     //    controller($mail,$mdp,$pseudo);
 
@@ -34,14 +23,13 @@ $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
         }
     }
 
-function controller($mail, $mdp, $pseudo)
+function controller($mdp, $pseudo): array
 {
     $errors = [];
 
     $middlewares = [
         pseudoIsEmpty($pseudo),
         passwordIsEmpty($mdp),
-
     ];
 
     foreach ($middlewares as $result) {

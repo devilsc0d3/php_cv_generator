@@ -1,5 +1,5 @@
 <?php
-include '../../server/cvs/cvs_controller.php';
+include '../../server/profile/profile_controller.php';
 
 ?>
 
@@ -8,100 +8,9 @@ include '../../server/cvs/cvs_controller.php';
 <head>
     <meta charset="UTF-8">
     <title>cv</title>
+    <link rel="stylesheet" href="../css/profile.css">
 </head>
-<style>
 
-    h1 {
-        margin: 50px;
-        color: #0372B2;
-        font-size: 50px;
-        font-family: "OCR A Extended", monospace;
-        text-align: center;
-    }
-
-    h2 {
-        margin: 50px;
-        color: #0372B2;
-        font-size: 30px;
-        font-family: "OCR A Extended", monospace;
-        text-align: center;
-    }
-
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: rgb(228, 250, 255);
-    }
-    form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    input {
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        outline: none;
-        margin: 10px;
-        width: 500px;
-        /*font-size: 20px;*/
-    }
-    input[type="submit"] {
-        background-color: #0372B2;
-        color: white;
-        cursor: pointer;
-    }
-    input[type="submit"]:hover {
-        background-color: #08BDBA;
-    }
-    input[type="submit"]:active {
-        background-color: #0372B2;
-    }
-    input[type="text"]:focus {
-        border: 1px solid #0372B2;
-    }
-    input[type="text"]::placeholder {
-        color: #0372B2;
-    }
-    input[type="submit"] {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        outline: none;
-        cursor: pointer;
-    }
-    input[type="submit"]:hover {
-        background-color: #08BDBA;
-    }
-    input[type="submit"] {
-        background-color: #0372B2;
-        color: white;
-    }
-    input[type="submit"]:hover {
-        background-color: #08BDBA;
-    }
-    input[type="submit"] {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        outline: none;
-        cursor: pointer;
-    }
-    input[type="submit"]:hover {
-        background-color: #08BDBA;
-    }
-
-    input[type="submit"] {
-        background-color: #0372B2;
-        color: white;
-    }
-    input[type="submit"]:hover {
-        background-color: #
-    }
-
-</style>
 <body>
 
     <div>

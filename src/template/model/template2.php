@@ -91,7 +91,7 @@
 
             <!-- Education Section -->
             <h2>Education</h2>
-            <h3>University of ABC - BSc in Computer Science</h3>
+            <h3>University of ABC - in Computer Science</h3>
             <p>2015 - 2019</p>
             <!-- Additional entries here -->
         </div>

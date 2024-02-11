@@ -14,15 +14,3 @@ function deleteUser($id)
     $deleteUser->execute(array($id));
     header('Location: home.php');
 }
-
-function UpdateUser($id)
-{
-
-}
-
-function getName()
-{
-
-}
-
-?>
