@@ -1,18 +1,43 @@
 
 .glass {
     z-index: 10;
-    width: 200px;
+    width: auto;
     height: auto;
     text-align: center;
-
     margin: 20px;
-
     background: rgba(255,255,255, 1);
-    border-radius: 120px 90px 160px 16px;
+    border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(19px);
     -webkit-backdrop-filter: blur(19px);
     border: 1px solid rgb(255, 255, 255);
+}
+
+input[type=text] {
+    padding: 25px 0 0 5px;
+
+    outline: none;
+    color: black;
+    border: 1px solid transparent;
+    border-bottom: 1px solid rgb(100, 107, 115);
+    background: rgba(255,255,255,0);
+}
+
+.sub {
+    margin: 20px;
+    padding: 10px;
+    background-color: rgb(0, 127, 231);
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(19px);
+    -webkit-backdrop-filter: blur(19px);
+    border: 1px solid rgb(0, 127, 231);
+    cursor: pointer;
+}
+
+.input {
+    text-align: center;
 }
 
 .h {
@@ -109,15 +134,37 @@ html {
 }
 
 .convert {
+    margin: 100px;
+    position: relative;
     font-size: 40px;
-    margin: 50px;
-    text-align: center;
-    width: auto;
     height: 50px;
     background-color: rgb(0, 127, 231);
     color: white;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+.profileButton {
+    color: #007fe7;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container {
+    margin: 0;
+    text-align: center;
+    position: relative;
+    width: auto;
+}
+
+.delete {
+    border: none;
+    margin: 20px 20px 0 0;
+    font-size: 40px;
+    color: #ffffff;
+    background-color: transparent;
     cursor: pointer;
 }
 
@@ -128,4 +175,27 @@ footer {
     color: white;
     padding: 10px;
     bottom: 0;
+}
+
+.width {
+    display: flex; /* Utilise Flexbox */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    width: 100%; /* Ajustez la largeur selon vos besoins */
+}
+
+
+.deletePreset {
+    width: 25px;
+    height: 30px;
+}
+
+.errorPreset {
+    margin: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #ffbdbd;
+    color: #960000;
+    font-size: 30px;
+    font-family: "OCR A Extended", monospace;
 }

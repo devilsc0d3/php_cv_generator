@@ -3,8 +3,7 @@
 use Dompdf\Dompdf;
 
 include 'home_service.php';
-
-//use Dompdf\Dompdf;
+include 'home_middleware.php';
 
 session_start();
 
@@ -26,9 +25,14 @@ if(isset($_POST['convert'])) {
 }
 
 if (isset($_POST['send'])) {
-   addPreset($_SESSION['id'],$_POST['name']);
-   header('Location: home.php');
-
+    if (isPresetUsed($_POST['name'],$_SESSION['id'])) {
+        echo '<p class="errorPreset">Le nom du preset est déjà utilisé</p>';
+    } else if (!isPresetEmpty($_POST['name'])) {
+        addPreset($_SESSION['id'],$_POST['name']);
+        header('Location: home.php');
+    } else {
+        echo '<p class="errorPreset">Le nom du preset est vide.</p>';
+    }
 }
 
 if (isset($_POST['delete'])) {
@@ -44,11 +48,23 @@ function pdfGenerator($template)
 
     $dompdf = new Dompdf();
     ob_start();
-    include "../../template/model/template1.php";
+    include "../../template/model/" . $template;
     $html = ob_get_clean();
     $dompdf->loadHtml($html);
-    $dompdf->setPaper('A4', 'portrait');
+    $dompdf->setPaper('A4');
     $dompdf->render();
     $dompdf->stream('cv.pdf');
 
 }
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    foreach ($_POST as $key => $value) {
+
+        if (strpos($key, 'delete_preset_') === 0) {
+            $presetId = substr($key, 14);
+            deletePresetAndData($presetId);
+            header('Location: Home.php');
+        }
+    }
+}
+

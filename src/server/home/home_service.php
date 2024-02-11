@@ -7,6 +7,13 @@ function addPreset($id,$name)
     $addPreset->execute(array($id,$name));
 }
 
+function deletePresetAndData($id)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $sql = "DELETE preset, hobbies FROM preset LEFT JOIN hobbies ON preset.id = hobbies.id_cv WHERE preset.id = $id";
+    return $bdd->query($sql);
+}
+
 function getPresets()
 {
     $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");

@@ -17,7 +17,7 @@ include "../../server/home/home_controller.php";
     if (isset($_SESSION['pseudo'])) {
         echo '<a href="logout.php"><h1>logout</h1></a>';
         echo '<form action="" method="post">';
-        echo '<input type="submit" value="delete_account" name="delete">';
+        echo '<input type="submit" class="delete" value="delete account" name="delete">';
         echo '</form>';
     }
     ?>
@@ -45,25 +45,26 @@ if (!isset($_SESSION['mdp'])) {
                 $presets = [];
             }
             foreach ($presets as $preset) {
-                echo "<div class='glass'>";
+                echo "<div class='container'>";
                 echo "<input type='hidden' name='preset_id' value='" . $preset['id'] . "'>";
-                echo "<button type='submit' name='profile' value='" . $preset['id'] . "'>";
+                echo "<button type='submit' autocomplete='off' class='profileButton glass' name='profile' value='" . $preset['id'] . "' >";
                 echo "<p>" . $preset['title'] . "</p>";
                 echo "</button>";
+                echo '<input type="submit" class="sub" value="delete" name="delete_preset_' . $preset['id'] . '" autocomplete="off" class="submit-btn">';
+
                 ?>
-                <label>
-                    <input type='radio' name='preset' value='<?php echo $preset['id']; ?>'>
-                </label>
+
+                <br><input type='radio' name='preset' value='<?php echo $preset['id']; ?>'>
 
                 <?php
                 echo '</div>';
             }
             ?>
-            <div class="glass">
+            <div class="glass input">
                 <label>
-                    <input type="text" placeholder="name of preset" name="name">
+                    <input type="text" placeholder="name of preset" name="name" autocomplete='off'>
                 </label>
-                <input type="submit" value="send" name="send">
+                <input type="submit" class="sub" value="send" name="send">
             </div>
         </section>
 
@@ -72,23 +73,27 @@ if (!isset($_SESSION['mdp'])) {
                 <h1>CV template</h1>
             </div>
             <section class="template">
-                    <div class="glass2">
-                        <label>
-                            <input type="radio" name="template" value="template1">
-                        </label>
+                    <div class="container">
+                        <div class="glass2">
+                        </div>
+                        <input type="radio" name="template" value="template1">
                     </div>
-                    <div class="glass2">
-                        <label>
-                            <input type="radio" name="template" value="template2">
-                        </label>
+
+                    <div class="container">
+                        <div class="glass2">
+                        </div>
+                        <input type="radio" name="template" value="template2">
                     </div>
-                    <div class="glass2">
-                        <label>
-                            <input type="radio" name="template" value="template3">
-                        </label>
+
+                    <div class="container">
+                        <div class="glass2">
+                        </div>
+                        <input type="radio" name="template" value="template3">
                     </div>
-                    <input type="submit" class="convert" value="convert to pdf" name="convert">
             </section>
+            <div class="width">
+                <input type="submit" class="convert" value="convert to pdf" name="convert">
+            </div>
         </section>
         </form>
     </section>
