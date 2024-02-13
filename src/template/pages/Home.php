@@ -16,13 +16,15 @@ include "../../server/home/home_controller.php";
     <?php
     if (isset($_SESSION['pseudo'])) {
         echo '<a href="logout.php"><h1>logout</h1></a>';
+        if ($_SESSION['role'] == 1) {
+            echo '<a href="admin.php"><h1>admin</h1></a>';
+        }
         echo '<form action="" method="post">';
         echo '<input type="submit" class="delete" value="delete account" name="delete">';
         echo '</form>';
     }
     ?>
 </header>
-
 <?php
 if (!isset($_SESSION['mdp'])) {
     ?>
@@ -34,6 +36,7 @@ if (!isset($_SESSION['mdp'])) {
     </div>
     <?php
 } else {
+    echo '<h1 class="name">Hello ' . $_SESSION["pseudo"] . '!</h1>';
     ?>
     <section>
         <form action="" method="post">

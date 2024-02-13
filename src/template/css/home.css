@@ -199,3 +199,10 @@ footer {
     font-size: 30px;
     font-family: "OCR A Extended", monospace;
 }
+
+.name {
+    font-size: 80px;
+    font-family: "OCR A Extended", monospace;
+    color: #007fe7;
+    text-align: center;
+}

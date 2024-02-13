@@ -1,3 +1,9 @@
+
+
+body {
+    background: rgb(228, 250, 255);
+}
+
 img {
     width: 90vh;
 }
@@ -11,8 +17,4 @@ img {
 
 h1 {
     text-align: center;
-}
-
-html {
-    background: #ffffff;
 }

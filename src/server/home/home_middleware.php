@@ -17,3 +17,8 @@ function isPresetUsed($string,$id): bool
     }
     return false;
 }
+
+function radioChecked($id,$template): bool
+{
+    return $id != "" && $template != "";
+}

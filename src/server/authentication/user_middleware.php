@@ -57,3 +57,15 @@ function emailValid($email)
     }
     return "email non valide";
 }
+
+function getUser($pseudo)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $getUser = $bdd->prepare('SELECT * FROM user WHERE pseudo = ?');
+    $getUser->execute(array($pseudo));
+
+    if ($getUser->rowCount() > 0) {
+        return "pseudo déjà utilisé";
+    }
+    return true;
+}

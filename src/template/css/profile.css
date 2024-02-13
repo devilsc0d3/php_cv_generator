@@ -21,6 +21,7 @@ body {
     align-items: center;
     background: rgb(228, 250, 255);
 }
+
 form {
     display: flex;
     flex-direction: column;
@@ -87,4 +88,51 @@ input[type="submit"] {
 }
 input[type="submit"]:hover {
     background-color: #08BDBA;
+}
+
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    background-color: #0372B2;
+    color: white;
+    text-align: center;
+    /*margin-left: 40%;*/
+}
+
+a {
+    text-align: center;
+
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 20px;
+    font-family: "OCR A Extended", monospace;
+}
+
+.button_delete {
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    background-color: #0372B2;
+    color: white;
+    text-align: center;
+    width: 200px;
+}
+
+.testeuuu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.class {
+    margin: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

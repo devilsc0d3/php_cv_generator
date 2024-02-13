@@ -31,6 +31,13 @@ function addHobbies($msg, $id)
     $req->execute(array($msg, $id));
 }
 
+function editHobbies($id, $msg)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $req = $bdd->prepare('UPDATE hobbies SET description = ? WHERE id = ?');
+    $req->execute(array($msg, $id));
+}
+
 function deleteEducation($id)
 {
     $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");

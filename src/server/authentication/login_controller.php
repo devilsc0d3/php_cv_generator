@@ -8,15 +8,19 @@ $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
         $pseudo = htmlspecialchars($_POST['pseudo']);
         $mdp = sha1($_POST['mdp']);
 
-    //    controller($mail,$mdp,$pseudo);
+        controller($mdp,$pseudo);
 
-        $getUser = $bdd->prepare('SELECT * FROM user WHERE pseudo = ?');
-        $getUser->execute(array($pseudo));
+        $getUser = $bdd->prepare('SELECT * FROM user WHERE pseudo = ? and passw = ?');
+        $getUser->execute(array($pseudo, $mdp));
 
         if ($getUser->rowCount() > 0) {
+            $user = $getUser->fetch(); // Récupère la première ligne de résultat
             $_SESSION['pseudo'] = $pseudo;
             $_SESSION['mdp'] = $mdp;
-            $_SESSION['id'] = $getUser->fetch()['id'];
+            $_SESSION['id'] = $user['id'];
+
+            $_SESSION['role'] = $user['role'];
+
             header('Location: Home.php');
         } else {
             echo 'bad user';
