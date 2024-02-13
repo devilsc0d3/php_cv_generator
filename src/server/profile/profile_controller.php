@@ -8,7 +8,7 @@ echo $_SESSION['cv_id'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
-    // Condition pour supprimer l'éducation
+    // delete education
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'delete_education_') === 0) {
             $education_id = substr($key, 17);
@@ -18,16 +18,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // Parcourir les paramètres POST pour trouver le bouton de suppression approprié
+    // delete hobbies
     foreach ($_POST as $key => $value) {
-        if (strpos($key, 'delete_experience_') === 0) {
-            $hobby_id = substr($key, 18);
+        if (strpos($key, 'delete_hobby_') === 0) {
+            $hobby_id = substr($key, 13);
             deleteHobbies($hobby_id);
             header('Location: profile.php');
         }
     }
 
-    // Parcourir les paramètres POST pour trouver le bouton de edit approprié
+    // edit hobbies
+    foreach ($_POST as $key => $value) {
+        if (strpos($key, 'edit_hobby_') === 0) {
+            $hobby_id = substr($key, 11);
+            editHobbies($hobby_id, $_POST['hobbies_' . $hobby_id]);
+        }
+    }
+
+
+    // experience delete
+    foreach ($_POST as $key => $value) {
+        if (strpos($key, 'delete_experience_') === 0) {
+            $delete_id = substr($key, 18);
+            deleteExperience($delete_id);
+            header('Location: profile.php');
+        }
+    }
+
+    // experience edit
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'edit_experience_') === 0) {
             $hobby_id = substr($key, 16);
@@ -37,8 +55,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 
+function deleteExperience($id)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $req = $bdd->prepare('DELETE FROM profesional_experience WHERE id = ?');
+    $req->execute(array($id));
+}
+
+
 $hobb = getHobbies($_SESSION['cv_id']);
 $education = getEducation($_SESSION['cv_id']);
+$professionals = getProfessionals($_SESSION['cv_id']);
+
+if (isset($_POST['addProfessional'])) {
+    addProfessional($_SESSION['cv_id'], $_POST['title'], $_POST['entreprise'], $_POST['description'], $_POST['begin_date'], $_POST['end_date']);
+//    header('Location: profile.php');
+}
+
+function addProfessional($id, $title, $entreprise, $description, $begin_date, $end_date)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $req = $bdd->prepare('INSERT INTO profesional_experience(id_cv, title, entreprise, description, begin, end) VALUES(?, ?, ?, ?, ?, ?)');
+    $req->execute(array($id, $title, $entreprise, $description, $begin_date, $end_date));
+    header('Location: profidle.php');
+
+}
+
+function getProfessionals()
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $req = $bdd->prepare('SELECT * FROM profesional_experience where id_cv = ?');
+    $req->execute(array($_SESSION['cv_id']));
+    return $req->fetchAll();
+}
+
 
 if (isset($_POST['addHobbies'])) {
     addHobbies($_POST['hobbies'], $_SESSION['cv_id']);

@@ -117,8 +117,8 @@ include '../../server/profile/profile_controller.php';
                 echo '<form method="post" action="">';
                 echo '<textarea name="hobbies_'. $hobby['id'].'" placeholder="name of etablisment">' . $hobby['description'] . '</textarea>';
                 echo '<div class="testeuuu">';
-                echo '<input type="submit" value="edit" name="edit_experience_' . $hobby['id'] . '" autocomplete="off" class="button_delete">';
-                echo '<input type="submit" value="delete" name="delete_experience_' . $hobby['id'] . '" autocomplete="off" class="button_delete">';
+                echo '<input type="submit" value="edit" name="edit_hobby_' . $hobby['id'] . '" autocomplete="off" class="button_delete">';
+                echo '<input type="submit" value="delete" name="delete_hobby_' . $hobby['id'] . '" autocomplete="off" class="button_delete">';
                 echo '</div>';
                 echo '</form>';
             }
@@ -136,20 +136,32 @@ include '../../server/profile/profile_controller.php';
             global $professionals;
             foreach ($professionals as $professional) {
                 echo '<form method="post" action="">';
-                echo '<textarea name="professional'. $professional['id'].'" placeholder="name of etablisment">' . $hobby['description'] . '</textarea>';
-                echo '<div class="testeuuu">';
-                echo '<input type="submit" value="edit" name="edit_experience_' . $hobby['id'] . '" autocomplete="off" class="button_delete">';
-                echo '<input type="submit" value="delete" name="delete_experience_' . $hobby['id'] . '" autocomplete="off" class="button_delete">';
-                echo '</div>';
+                echo '<textarea name="professional'. $professional['title'].'" placeholder="name of etablisment">' . $professional['title'] . '</textarea>';
+                echo '<input type="submit" value="edit" name="edit_experience_title_' . $professional['id'] . '" autocomplete="off" class="button_delete">';
+
+                echo '<textarea name="professional'. $professional['entreprise'].'" placeholder="name of etablisment">' . $professional['entreprise'] . '</textarea>';
+                echo '<input type="submit" value="edit" name="edit_experience_entreprise_' . $professional['id'] . '" autocomplete="off" class="button_delete">';
+
+                echo '<textarea name="professional'. $professional['begin'].'" placeholder="name of etablisment">' . $professional['begin'] . '</textarea>';
+                echo '<input type="submit" value="edit" name="edit_experience_begin_' . $professional['id'] . '" autocomplete="off" class="button_delete">';
+
+                echo '<textarea name="professional'. $professional['end'].'" placeholder="name of etablisment">' . $professional['end'] . '</textarea>';
+                echo '<input type="submit" value="edit" name="edit_experience_end_' . $professional['id'] . '" autocomplete="off" class="button_delete">';
+
+                echo '<textarea name="professional'. $professional['description'].'" placeholder="name of etablisment">' . $professional['description'] . '</textarea>';
+                echo '<input type="submit" value="edit" name="edit_experience_description_' . $professional['id'] . '" autocomplete="off" class="button_delete">';
+
+                echo '<input type="submit" value="delete" name="delete_experience_' . $professional['id'] . '" autocomplete="off" class="button_delete">';
                 echo '</form>';
             }
             ?>
             <form method="post">
-                <input type="text" name="education" placeholder="name of entreprise">
-                <input type="text" name="desc" placeholder="description">
+                <input type="text" name="title" placeholder="name of entreprise">
+                <input type="text" name="entreprise" placeholder="name of entreprise">
+                <input type="text" name="description" placeholder="description">
                 <input type="date" name="begin_date" placeholder="date">
                 <input type="date" name="end_date" placeholder="date">
-                <input type="submit" value="Send" name='send' autocomplete="off" class="submit-btn">
+                <input type="submit" value="Send" name='addProfessional' autocomplete="off" class="submit-btn">
             </form>
         </div>
     </div>
