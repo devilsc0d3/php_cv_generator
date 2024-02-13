@@ -17,24 +17,6 @@ include '../../server/profile/profile_controller.php';
         <h1>Create new CV</h1>
        <button class="button"><a href="Home.php">back</a></button>
         <div class="general">
-            <?php
-            // Connexion à la base de données
-            $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
-
-            // Préparation et exécution de la requête pour récupérer le nom de l'image après la mise à jour
-            $req = $bdd->prepare('SELECT photo FROM user WHERE id = ?');
-            $req->execute(array($_SESSION['id']));
-            $res = $req->fetch();
-
-            // Vérification si une image a été récupérée
-            if ($res && $res["photo"]) {
-                // Affichage de l'image avec une balise img
-                echo "<img src='../../uploads/imgs/" . $res["photo"] . "' alt='User Photo'>";
-            } else {
-                // Message d'erreur si aucune image n'est trouvée
-                echo "Aucune image trouvée.";
-            }
-            ?>
 
             <h2>General</h2>
             <?php
@@ -83,9 +65,26 @@ include '../../server/profile/profile_controller.php';
                 <input type="submit" name="sendLicenseB">
             </form>
 
+            <?php
+            // Connexion à la base de données
+            $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+
+            // Préparation et exécution de la requête pour récupérer le nom de l'image après la mise à jour
+            $req = $bdd->prepare('SELECT photo FROM user WHERE id = ?');
+            $req->execute(array($_SESSION['id']));
+            $res = $req->fetch();
+
+            // Vérification si une image a été récupérée
+            if ($res && $res["photo"]) {
+                // Affichage de l'image avec une balise img
+                echo "<img class='photo' src='../../uploads/imgs/" . $res["photo"] . "' alt='User Photo'>";
+            }
+            ?>
+
             <form method="post" enctype="multipart/form-data">
                 <input type="file" name="photo">
-                <input type="submit" name="sendPhoto">
+                <input type="submit" name="deletePhoto" value="delete">
+                <input type="submit" name="sendPhoto" value="upload">
             </form>
         </div>
 
@@ -95,9 +94,20 @@ include '../../server/profile/profile_controller.php';
             global $education;
             foreach ($education as $item) {
                 echo '<form method="post" action="">';
-                echo '<input type="submit" value="delete" name="delete_education_' . $item['id'] . '" autocomplete="off" class="submit-btn">';
+                echo '<textarea name="education_'. $item['id'].'" placeholder="name of etablisment">' . $item['name'] . '</textarea>';
+                echo '<input type="submit" value="edit" name="edit_education_' . $item['id'] . '" autocomplete="off" class="button_delete">';
+
+                echo '<textarea name="desc_'. $item['id'].'" placeholder="name of etablisment">' . $item['description'] . '</textarea>';
+                echo '<input type="submit" value="edit" name="edit_education_desc_' . $item['id'] . '" autocomplete="off" class="button_delete">';
+
+                echo '<textarea name="begin_'. $item['id'].'" placeholder="name of etablisment">' . $item['begin'] . '</textarea>';
+                echo '<input type="submit" value="edit" name="edit_education_begin_' . $item['id'] . '" autocomplete="off" class="button_delete">';
+
+                echo '<textarea name="end_'. $item['id'].'" placeholder="name of etablisment">' . $item['end'] . '</textarea>';
+                echo '<input type="submit" value="edit" name="edit_education_end_' . $item['id'] . '" autocomplete="off" class="button_delete">';
+
+                echo '<input type="submit" value="delete" name="delete_education_' . $item['id'] . '" autocomplete="off" class="button_delete">';
                 echo '</form>';
-                echo $item['name'] . ' / ' . $item['description'];
             }
             ?>
 
@@ -136,19 +146,19 @@ include '../../server/profile/profile_controller.php';
             global $professionals;
             foreach ($professionals as $professional) {
                 echo '<form method="post" action="">';
-                echo '<textarea name="professional'. $professional['title'].'" placeholder="name of etablisment">' . $professional['title'] . '</textarea>';
+                echo '<textarea name="title'. $professional['id'].'" placeholder="name of etablisment">' . $professional['title'] . '</textarea>';
                 echo '<input type="submit" value="edit" name="edit_experience_title_' . $professional['id'] . '" autocomplete="off" class="button_delete">';
 
-                echo '<textarea name="professional'. $professional['entreprise'].'" placeholder="name of etablisment">' . $professional['entreprise'] . '</textarea>';
+                echo '<textarea name="entreprise'. $professional['entreprise'].'" placeholder="name of etablisment">' . $professional['entreprise'] . '</textarea>';
                 echo '<input type="submit" value="edit" name="edit_experience_entreprise_' . $professional['id'] . '" autocomplete="off" class="button_delete">';
 
-                echo '<textarea name="professional'. $professional['begin'].'" placeholder="name of etablisment">' . $professional['begin'] . '</textarea>';
+                echo '<textarea name="begin'. $professional['begin'].'" placeholder="name of etablisment">' . $professional['begin'] . '</textarea>';
                 echo '<input type="submit" value="edit" name="edit_experience_begin_' . $professional['id'] . '" autocomplete="off" class="button_delete">';
 
-                echo '<textarea name="professional'. $professional['end'].'" placeholder="name of etablisment">' . $professional['end'] . '</textarea>';
+                echo '<textarea name="end'. $professional['end'].'" placeholder="name of etablisment">' . $professional['end'] . '</textarea>';
                 echo '<input type="submit" value="edit" name="edit_experience_end_' . $professional['id'] . '" autocomplete="off" class="button_delete">';
 
-                echo '<textarea name="professional'. $professional['description'].'" placeholder="name of etablisment">' . $professional['description'] . '</textarea>';
+                echo '<textarea name="description'. $professional['description'].'" placeholder="name of etablisment">' . $professional['description'] . '</textarea>';
                 echo '<input type="submit" value="edit" name="edit_experience_description_' . $professional['id'] . '" autocomplete="off" class="button_delete">';
 
                 echo '<input type="submit" value="delete" name="delete_experience_' . $professional['id'] . '" autocomplete="off" class="button_delete">';

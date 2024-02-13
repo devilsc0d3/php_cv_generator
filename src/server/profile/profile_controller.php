@@ -47,13 +47,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // experience edit
     foreach ($_POST as $key => $value) {
-        if (strpos($key, 'edit_experience_') === 0) {
-            $hobby_id = substr($key, 16);
-            editHobbies($hobby_id, $_POST['hobbies_' . $hobby_id]);
+        if (strpos($key, 'edit_experience_title_') === 0) {
+            $edit_id = substr($key, 22);
+            editExperienceTitle($edit_id, $_POST['title' . $edit_id]);
         }
     }
 }
 
+if (isset($_POST['deletePhoto'])) {
+    deletePhoto($_SESSION['id']);
+    header('Location: profile.php');
+}
+
+function deletePhoto($id) {
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $req = $bdd->prepare('UPDATE user SET photo = ? WHERE id = ?');
+    $req->execute(array('', $id));
+}
+
+function editExperienceTitle($id, $title)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $req = $bdd->prepare('UPDATE profesional_experience SET title = ? WHERE id = ?');
+    $req->execute(array($title, $id));
+}
 
 function deleteExperience($id)
 {
