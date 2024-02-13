@@ -52,7 +52,124 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             editExperienceTitle($edit_id, $_POST['title' . $edit_id]);
         }
     }
+
+    foreach ($_POST as $key => $value) {
+        if (strpos($key, 'edit_experience_entreprise_') === 0) {
+            $edit_id = substr($key, 27);
+            editExperienceEntreprise($edit_id, $_POST['entreprise' . $edit_id]);
+        }
+    }
+
+    foreach ($_POST as $key => $value) {
+        if (strpos($key, 'edit_experience_description_') === 0) {
+            $edit_id = substr($key, 28);
+            editExperienceDescription($edit_id, $_POST['description' . $edit_id]);
+        }
+    }
+
+    foreach ($_POST as $key => $value) {
+        if (strpos($key, 'edit_experience_begin_') === 0) {
+            $edit_id = substr($key, 22);
+            editExperienceBegin($edit_id, $_POST['begin' . $edit_id]);
+        }
+    }
+
+    foreach ($_POST as $key => $value) {
+        if (strpos($key, 'edit_experience_end_') === 0) {
+            $edit_id = substr($key, 20);
+            editExperienceEnd($edit_id, $_POST['end' . $edit_id]);
+        }
+    }
+
+    // education title
+    foreach ($_POST as $key => $value) {
+        if (strpos($key, 'education_') === 0) {
+            $education_id = substr($key, 10);
+            editEducation($education_id, $_POST['education_' . $education_id]);
+        }
+    }
+
+    // education desc
+    foreach ($_POST as $key => $value) {
+        if (strpos($key, 'desc_') === 0) {
+            $desc_id = substr($key, 5);
+            editEducationDesc($desc_id, $_POST['desc_' . $desc_id]);
+        }
+    }
+
+    // education begin
+    foreach ($_POST as $key => $value) {
+        if (strpos($key, 'begin_') === 0) {
+            $begin_id = substr($key, 6);
+            editEducationBegin($begin_id, $_POST['begin_' . $begin_id]);
+        }
+    }
+
+    // education end
+    foreach ($_POST as $key => $value) {
+        if (strpos($key, 'end_') === 0) {
+            $end_id = substr($key, 4);
+            editEducationEnd($end_id, $_POST['end_' . $end_id]);
+        }
+    }
 }
+
+function editExperienceEntreprise($id, $entreprise)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $req = $bdd->prepare('UPDATE profesional_experience SET entreprise = ? WHERE id = ?');
+    $req->execute(array($entreprise, $id));
+}
+
+function editExperienceDescription($id, $description)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $req = $bdd->prepare('UPDATE profesional_experience SET description = ? WHERE id = ?');
+    $req->execute(array($description, $id));
+}
+
+function editExperienceBegin($id, $begin)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $req = $bdd->prepare('UPDATE profesional_experience SET begin = ? WHERE id = ?');
+    $req->execute(array($begin, $id));
+}
+
+function editExperienceEnd($id, $end)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $req = $bdd->prepare('UPDATE profesional_experience SET end = ? WHERE id = ?');
+    $req->execute(array($end, $id));
+}
+function editEducation($id, $education)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $req = $bdd->prepare('UPDATE education SET name = ? WHERE id = ?');
+    $req->execute(array($education, $id));
+}
+
+function editEducationDesc($id, $education)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $req = $bdd->prepare('UPDATE education SET description = ? WHERE id = ?');
+    $req->execute(array($education, $id));
+}
+
+function editEducationBegin($id, $begin)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $req = $bdd->prepare('UPDATE education SET begin = ? WHERE id = ?');
+    $req->execute(array($begin, $id));
+}
+
+function editEducationEnd($id, $end)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $req = $bdd->prepare('UPDATE education SET end = ? WHERE id = ?');
+    $req->execute(array($end, $id));
+}
+
+
 
 if (isset($_POST['deletePhoto'])) {
     deletePhoto($_SESSION['id']);

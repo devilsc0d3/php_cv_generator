@@ -149,16 +149,16 @@ include '../../server/profile/profile_controller.php';
                 echo '<textarea name="title'. $professional['id'].'" placeholder="name of etablisment">' . $professional['title'] . '</textarea>';
                 echo '<input type="submit" value="edit" name="edit_experience_title_' . $professional['id'] . '" autocomplete="off" class="button_delete">';
 
-                echo '<textarea name="entreprise'. $professional['entreprise'].'" placeholder="name of etablisment">' . $professional['entreprise'] . '</textarea>';
+                echo '<textarea name="entreprise'. $professional['id'].'" placeholder="name of etablisment">' . $professional['entreprise'] . '</textarea>';
                 echo '<input type="submit" value="edit" name="edit_experience_entreprise_' . $professional['id'] . '" autocomplete="off" class="button_delete">';
 
-                echo '<textarea name="begin'. $professional['begin'].'" placeholder="name of etablisment">' . $professional['begin'] . '</textarea>';
+                echo '<textarea name="begin'. $professional['id'].'" placeholder="name of etablisment">' . $professional['begin'] . '</textarea>';
                 echo '<input type="submit" value="edit" name="edit_experience_begin_' . $professional['id'] . '" autocomplete="off" class="button_delete">';
 
-                echo '<textarea name="end'. $professional['end'].'" placeholder="name of etablisment">' . $professional['end'] . '</textarea>';
+                echo '<textarea name="end'. $professional['id'].'" placeholder="name of etablisment">' . $professional['end'] . '</textarea>';
                 echo '<input type="submit" value="edit" name="edit_experience_end_' . $professional['id'] . '" autocomplete="off" class="button_delete">';
 
-                echo '<textarea name="description'. $professional['description'].'" placeholder="name of etablisment">' . $professional['description'] . '</textarea>';
+                echo '<textarea name="description'. $professional['id'].'" placeholder="name of etablisment">' . $professional['description'] . '</textarea>';
                 echo '<input type="submit" value="edit" name="edit_experience_description_' . $professional['id'] . '" autocomplete="off" class="button_delete">';
 
                 echo '<input type="submit" value="delete" name="delete_experience_' . $professional['id'] . '" autocomplete="off" class="button_delete">';

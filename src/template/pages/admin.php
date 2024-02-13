@@ -12,18 +12,17 @@ include "../../server/home/home_controller.php";
 
 <body>
 <header>
-    <h1>CvGeneratorPhp</h1>
+    <a href="Home.php"><h1>CvGeneratorPhp</h1></a>
     <?php
     if (isset($_SESSION['pseudo'])) {
         echo '<a href="logout.php"><h1>logout</h1></a>';
+        if ($_SESSION['role'] == 1) {
+            echo '<a href="admin.php"><h1>admin</h1></a>';
+        }
         echo '<form action="" method="post">';
         echo '<input type="submit" class="delete" value="delete account" name="delete">';
         echo '</form>';
     }
-    if ($_SESSION['role'] == 1) {
-        echo '<a href="admin.php"><h1>admin</h1></a>';
-    }
-
     ?>
 </header>
     <?php
