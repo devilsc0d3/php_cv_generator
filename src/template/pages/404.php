@@ -1,4 +1,5 @@
 <?php
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +10,7 @@
 </head>
 
 <body>
+
     <div class="center">
         <img src="../../img/error404.svg" alt="error 404">
     </div>

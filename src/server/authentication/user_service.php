@@ -9,10 +9,25 @@ function addUser($mail, $mdp, $pseudo)
 
 function deleteUser($id)
 {
-    global $bdd;
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
     $deleteUser = $bdd->prepare('DELETE FROM user WHERE id = ?');
     $deleteUser->execute(array($id));
     header('Location: home.php');
+}
+
+function addRoleAdmin($id)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
+    $addRole = $bdd->prepare('UPDATE user SET role = "1" WHERE id = ?');
+    $addRole->execute(array($id));
+}
+
+function getPresets()
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
+    $getPresets = $bdd->prepare('SELECT * FROM preset where id_user = ? ');
+    $getPresets->execute(array($_SESSION['id']));
+    return $getPresets;
 }
 
 function updatePassword($mail, $mdp, $pseudo) {

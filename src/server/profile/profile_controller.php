@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (strpos($key, 'edit_hobby_') === 0) {
             $hobby_id = substr($key, 11);
             editHobbies($hobby_id, $_POST['hobbies_' . $hobby_id]);
+            header('Location: profile.php');
         }
     }
 
@@ -49,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (strpos($key, 'edit_experience_title_') === 0) {
             $edit_id = substr($key, 22);
             editExperienceTitle($edit_id, $_POST['title' . $edit_id]);
+            header('Location: profile.php');
         }
     }
 
@@ -57,6 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (strpos($key, 'edit_experience_entreprise_') === 0) {
             $edit_id = substr($key, 27);
             editExperienceEntreprise($edit_id, $_POST['entreprise' . $edit_id]);
+            header('Location: profile.php');
         }
     }
 
@@ -65,6 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (strpos($key, 'edit_experience_description_') === 0) {
             $edit_id = substr($key, 28);
             editExperienceDescription($edit_id, $_POST['description' . $edit_id]);
+            header('Location: profile.php');
         }
     }
 
@@ -72,6 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (strpos($key, 'edit_experience_begin_') === 0) {
             $edit_id = substr($key, 22);
             editExperienceBegin($edit_id, $_POST['begin' . $edit_id]);
+            header('Location: profile.php');
         }
     }
 
@@ -79,6 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (strpos($key, 'edit_experience_end_') === 0) {
             $edit_id = substr($key, 20);
             editExperienceEnd($edit_id, $_POST['end' . $edit_id]);
+            header('Location: profile.php');
         }
     }
 
@@ -87,6 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (strpos($key, 'education_') === 0) {
             $education_id = substr($key, 10);
             editEducation($education_id, $_POST['education_' . $education_id]);
+            header('Location: profile.php');
         }
     }
 
@@ -95,6 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (strpos($key, 'desc_') === 0) {
             $desc_id = substr($key, 5);
             editEducationDesc($desc_id, $_POST['desc_' . $desc_id]);
+            header('Location: profile.php');
         }
     }
 
@@ -103,6 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (strpos($key, 'begin_') === 0) {
             $begin_id = substr($key, 6);
             editEducationBegin($begin_id, $_POST['begin_' . $begin_id]);
+            header('Location: profile.php');
         }
     }
 
@@ -111,6 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (strpos($key, 'end_') === 0) {
             $end_id = substr($key, 4);
             editEducationEnd($end_id, $_POST['end_' . $end_id]);
+            header('Location: profile.php');
         }
     }
 }

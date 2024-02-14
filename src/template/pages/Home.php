@@ -22,6 +22,8 @@ include "../../server/home/home_controller.php";
         echo '<form action="" method="post">';
         echo '<input type="submit" class="delete" value="delete account" name="delete">';
         echo '</form>';
+    } else {
+        echo '<a href="https://lesjoiesducode.fr/nicolas-cage-pedro-pascal-chef-deadline"><h1>By Fauré léo</h1></a>';
     }
     ?>
 </header>

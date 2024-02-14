@@ -11,7 +11,7 @@ session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
 
 if (isset($_SESSION['id'])) {
-    $presets = getPresets();
+    $presets = getPresets($_SESSION['id']);
 }
 
 if (isset($_POST['profile'])) {
@@ -42,6 +42,7 @@ if (isset($_POST['send'])) {
 
 if (isset($_POST['delete'])) {
     deleteUser($_SESSION['id']);
+    deleteAllPresetOfUser($_SESSION['id']);
     header('Location: logout.php');
 }
 

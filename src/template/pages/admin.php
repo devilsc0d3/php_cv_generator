@@ -80,13 +80,6 @@ if (!isset($_SESSION['pseudo'])) {
             addRoleAdmin($_SESSION['userIdAdmin']['id']);
         }
 
-        function addRoleAdmin($id)
-        {
-            $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
-            $req = $bdd->prepare('UPDATE user SET role = 1 WHERE id = ?');
-            $req->execute(array($id));
-        }
-
  ?>
 
 </body>
