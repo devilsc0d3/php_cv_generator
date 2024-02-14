@@ -30,9 +30,9 @@ if (!isset($_SESSION['mdp'])) {
     ?>
     <div class="center"><img src="../../img/login.svg" alt="image login"></div>
     <div class="center2">
-        <a href="register.php"><h1 class="center2">Register</h1></a>
+        <a href="register2.0.php"><h1 class="center2">Register</h1></a>
         <h1 class="center2"> / </h1>
-        <a href="login.php"><h1 class="center2">Login</h1></a>
+        <a href="login2.0.php"><h1 class="center2">Login</h1></a>
     </div>
     <?php
 } else {

@@ -25,26 +25,24 @@ if(isset($_POST['convert'])) {
     if (radioChecked($_SESSION['cv_idg'],$_SESSION['template'])) {
         pdfGenerator($_POST['template'] . '.php');
     } else {
-        echo '<p class="errorPreset">Veuillez selectionner un preset et un template</p>';
+        echo '<p class="errorPreset">Please select a preset and template</p>';
     }
 }
 
 if (isset($_POST['send'])) {
     if (isPresetUsed($_POST['name'],$_SESSION['id'])) {
-        echo '<p class="errorPreset">Le nom du preset est déjà utilisé</p>';
+        echo '<p class="errorPreset">name of preset is already used</p>';
     } else if (!isPresetEmpty($_POST['name'])) {
         addPreset($_SESSION['id'],$_POST['name']);
         header('Location: home.php');
     } else {
-        echo '<p class="errorPreset">Le nom du preset est vide.</p>';
+        echo '<p class="errorPreset">name of preset is empty</p>';
     }
 }
 
 if (isset($_POST['delete'])) {
     deleteUser($_SESSION['id']);
-    $_SESSION = array();
-    session_destroy();
-    header('Location: login.php');
+    header('Location: logout.php');
 }
 
 //function pdfGenerator($template)
@@ -66,7 +64,6 @@ function pdfGenerator($template)
 {
     require_once '../../uploads/dompdf/autoload.inc.php';
 
-    // Chargement de Dompdf et configuration des options
     $dompdf = new Dompdf();
     $options = new Options();
     $options->set('isPhpEnabled', true);
@@ -77,7 +74,6 @@ function pdfGenerator($template)
     $options->set('defaultFont', 'Arial');
     $options->set('isFontSubsettingEnabled', true);
 
-    // Définition des marges et des paddings à zéro
     $options->set('marginTop', 0);
     $options->set('marginBottom', 0);
     $options->set('marginLeft', 0);
@@ -87,20 +83,16 @@ function pdfGenerator($template)
     $options->set('paddingLeft', 0);
     $options->set('paddingRight', 0);
 
-    // Application des options à Dompdf
     $dompdf->setOptions($options);
 
-    // Chargement du contenu HTML
     ob_start();
     include "../../template/model/" . $template;
     $html = ob_get_clean();
     $dompdf->loadHtml($html);
 
-    // Rendu du PDF
     $dompdf->setPaper('A4');
     $dompdf->render();
 
-    // Envoi du PDF au navigateur
     $dompdf->stream('cv.pdf');
 }
 

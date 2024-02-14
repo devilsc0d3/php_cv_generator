@@ -89,6 +89,5 @@ if (!isset($_SESSION['pseudo'])) {
 
  ?>
 
-
 </body>
 </html>

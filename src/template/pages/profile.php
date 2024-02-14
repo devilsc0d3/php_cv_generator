@@ -17,7 +17,6 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div>
         <h1>Create new CV</h1>
-       <button class="button"><a href="Home.php">back</a></button>
         <div class="general">
 
             <h2>General</h2>
@@ -168,6 +167,8 @@ if (!isset($_SESSION['pseudo'])) {
                 <input type="date" name="begin_date" placeholder="date begin">
                 <input type="date" name="end_date" placeholder="date end">
                 <input type="submit" value="Send" name='addProfessional' autocomplete="off" class="submit-btn">
+
+                <button class="button"><a href="Home.php">back</a></button>
             </form>
         </div>
     </div>

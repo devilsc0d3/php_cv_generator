@@ -44,7 +44,7 @@ include '../../server/authentication/register_controller.php'
             ?>
 
             <input type="submit" value="Send" name='send' autocomplete="off" class="submit-btn">
-            <a href="login.php"><p>avez-vous deja un compte</p></a>
+            <a href="login.php"><p>Do you already have an account?</p></a>
         </form>
     </div>
 </body>

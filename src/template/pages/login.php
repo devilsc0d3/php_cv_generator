@@ -20,26 +20,26 @@ include '../../server/authentication/login_controller.php'
 <svg class="svg3" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
     <path fill="#FF9C00" d="M35.1,-51.5C47.1,-39.6,59.4,-31.5,65.8,-19.6C72.1,-7.7,72.5,8,66.6,20.2C60.7,32.4,48.5,41.2,36.3,46.3C24.2,51.4,12.1,52.9,3.3,48.3C-5.4,43.7,-10.8,33,-17.5,26.1C-24.2,19.2,-32.2,16.1,-43.7,7.8C-55.2,-0.5,-70.2,-14.1,-70,-25.2C-69.7,-36.2,-54.2,-44.8,-40,-55.9C-25.9,-67,-12.9,-80.7,-0.7,-79.8C11.6,-78.8,23.1,-63.3,35.1,-51.5Z" transform="translate(100 100)" />
 </svg>
-    <div class="selection">
-        <div class="backgroundTitle">
-            <h1>Login</h1>
-        </div>
-        <form action="" method='POST'>
-            <label for="pse">Username :</label>
-            <input type="text" name='pseudo' id="pse" autocomplete="off">
-
-            <label for="mdp">password :</label>
-            <input type="password" name="mdp" id="mdp" autocomplete="off">
-            <?php
-            if (true) {
-                echo "<p class='error'>bad password</p>";
-            }
-            ?>
-
-            <input type="submit" value="Send" name='send' autocomplete="off" class="submit-btn">
-            <a href="#"><p>mot de passe oublié ?</p></a>
-            <a href="register.php"><p>cée un compte des maintenant !</p></a>
-        </form>
+<div class="selection">
+    <div class="backgroundTitle">
+        <h1>Login</h1>
     </div>
+    <form action="" method='POST'>
+        <label for="pse">Username :</label>
+        <input type="text" name='pseudo' id="pse" autocomplete="off">
+
+        <label for="mdp">password :</label>
+        <input type="password" name="mdp" id="mdp" autocomplete="off">
+        <?php
+        if (true) {
+            echo "<p class='error'>bad password</p>";
+        }
+        ?>
+
+        <input type="submit" value="Send" name='send' autocomplete="off" class="submit-btn">
+        <a href="passwordForget.php"><p>password forget ?</p></a>
+        <a href="register.php"><p>create account now !</p></a>
+    </form>
+</div>
 </body>
 </html>
