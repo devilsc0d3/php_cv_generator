@@ -1,5 +1,10 @@
 <?php
 include "../../server/home/home_controller.php";
+
+if (!isset($_SESSION['pseudo'])) {
+    header('Location: Home.php');
+}
+
 ?>
 
 <!DOCTYPE html>

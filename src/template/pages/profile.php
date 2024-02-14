@@ -1,6 +1,8 @@
 <?php
 include '../../server/profile/profile_controller.php';
-
+if (!isset($_SESSION['pseudo'])) {
+    header('Location: Home.php');
+}
 ?>
 
 <!DOCTYPE html>

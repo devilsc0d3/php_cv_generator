@@ -30,11 +30,11 @@ if (isset($_POST['send'])) {
         $getUser->execute(array($pseudo));
 
         if ($getUser->rowCount() > 0) {
+            $user = $getUser->fetch(); // Récupère la première ligne de résultat
             $_SESSION['pseudo'] = $pseudo;
             $_SESSION['mdp'] = $mdp;
-            $_SESSION['mail'] = $mail;
-            $_SESSION['role'] = $getUser->fetch()['role'];
-            $_SESSION['id'] = $getUser->fetch()['id'];
+            $_SESSION['id'] = $user['id'];
+            $_SESSION['role'] = $user['role'];
 
             header('Location: Home.php');
             exit();
