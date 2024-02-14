@@ -3,6 +3,8 @@ include '../../server/profile/profile_controller.php';
 if (!isset($_SESSION['pseudo'])) {
     header('Location: Home.php');
 }
+
+$user = getInfoUser($_SESSION['id']);
 ?>
 
 <!DOCTYPE html>
@@ -20,16 +22,6 @@ if (!isset($_SESSION['pseudo'])) {
         <div class="general">
 
             <h2>General</h2>
-            <?php
-            function getInfoUser($id)
-            {
-                $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
-                $req = $bdd->prepare('SELECT * FROM user WHERE id = ?');
-                $req->execute(array($id));
-                return $req->fetch();
-            }
-            $user = getInfoUser($_SESSION['id']);
-            ?>
             <form action="" method='POST'>
                 <input type="text" name="name" placeholder="last name" value="<?php echo $user['name'] ?>">
                 <input type="submit" name="sendName">
@@ -67,15 +59,8 @@ if (!isset($_SESSION['pseudo'])) {
             </form>
 
             <?php
-            $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
-            $req = $bdd->prepare('SELECT photo FROM user WHERE id = ?');
-            $req->execute(array($_SESSION['id']));
-            $res = $req->fetch();
-            if ($res && $res["photo"]) {
-                echo "<img class='photo' src='../../uploads/imgs/" . $res["photo"] . "' alt='User Photo'>";
-            }
+                getPhoto();
             ?>
-
             <form method="post" enctype="multipart/form-data">
                 <input type="file" name="photo">
                 <input type="submit" name="deletePhoto" value="delete">

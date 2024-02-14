@@ -1,5 +1,13 @@
 <?php
 
+function getInfoUser($id)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $req = $bdd->prepare('SELECT * FROM user WHERE id = ?');
+    $req->execute(array($id));
+    return $req->fetch();
+}
+
 function getHobbies($id)
 {
     $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
@@ -163,6 +171,17 @@ function updatePhone($phone, $id)
     $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
     $req = $bdd->prepare('UPDATE user SET phone = ? WHERE id = ?');
     $req->execute(array($phone, $id));
+}
+
+function getPhoto()
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $req = $bdd->prepare('SELECT photo FROM user WHERE id = ?');
+    $req->execute(array($_SESSION['id']));
+    $res = $req->fetch();
+    if ($res && $res["photo"]) {
+        echo "<img class='photo' src='../../uploads/imgs/" . $res["photo"] . "' alt='User Photo'>";
+    }
 }
 
 function updateEmail($email, $id)

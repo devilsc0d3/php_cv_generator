@@ -45,7 +45,9 @@ if (!isset($_SESSION['mdp'])) {
             <div class="h backgroundTitle"><h1>Profiles</h1></div>
         <section class="profile">
             <?php
-            global $presets;
+            if (isset($_SESSION['id'])) {
+                $presets = getPresets($_SESSION['id']);
+            }
             if (!isset($presets)) {
                 $presets = [];
             }

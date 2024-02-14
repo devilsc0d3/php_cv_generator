@@ -10,10 +10,6 @@ session_start();
 
 $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
 
-if (isset($_SESSION['id'])) {
-    $presets = getPresets($_SESSION['id']);
-}
-
 if (isset($_POST['profile'])) {
     $_SESSION['cv_id'] = $_POST['profile'];
     header('Location: profile.php');

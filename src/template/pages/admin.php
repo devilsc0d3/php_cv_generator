@@ -82,5 +82,7 @@ if (!isset($_SESSION['pseudo'])) {
 
  ?>
 
+<h1>comming soon !</h1>
+
 </body>
 </html>
