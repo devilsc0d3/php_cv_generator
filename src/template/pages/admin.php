@@ -51,7 +51,7 @@ if (!isset($_SESSION['pseudo'])) {
             $req = $bdd->prepare('SELECT * FROM user where pseudo = ?');
             $req->execute(array($_POST['user']));
             $user = $req->fetch();
-            $_SESSION['useridadmin'] = $user;
+            $_SESSION['userIdAdmin'] = $user;
             if ($user) {
                 echo '<p>id : ' . $user['id'] . '</p>';
                 echo '<p>pseudo : ' . $user['pseudo'] . '</p>';
@@ -68,7 +68,7 @@ if (!isset($_SESSION['pseudo'])) {
 
         if (isset($_POST['delete_user'])) {
             $deleteUser = $bdd->prepare('DELETE FROM user WHERE id = ?');
-            $deleteUser->execute(array($_SESSION['useridadmin']['id']));
+            $deleteUser->execute(array($_SESSION['userIdAdmin']['id']));
             echo '<p>user deleted</p>';
             header('Location: admin.php');
         }
@@ -77,7 +77,7 @@ if (!isset($_SESSION['pseudo'])) {
         echo '<input type="submit" name="add_role_admin" value="add role admin">';
         echo '</form>';
         if (isset($_POST['add_role_admin'])) {
-            addRoleAdmin($_SESSION['useridadmin']['id']);
+            addRoleAdmin($_SESSION['userIdAdmin']['id']);
         }
 
         function addRoleAdmin($id)

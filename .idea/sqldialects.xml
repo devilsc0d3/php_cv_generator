@@ -9,5 +9,9 @@
     <file url="file://$PROJECT_DIR$/src/server/home/home_service.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/server/profile/profile_service.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/template/model/template1.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/template/model/template2.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/template/model/template3.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/template/pages/admin.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/template/pages/profile.php" dialect="GenericSQL" />
   </component>
 </project>

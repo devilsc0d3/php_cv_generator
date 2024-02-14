@@ -7,6 +7,24 @@ include '../../server/passwordForget/passwordForget_controller.php'
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    input{
+        margin: 10px;
+    }
+    </style>
 <body>
     <form action="" method='POST'>
         <label>

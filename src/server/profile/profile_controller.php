@@ -3,18 +3,18 @@ include 'profile_service.php';
 
 session_start();
 
-echo $_SESSION['cv_id'];
+$hobbies = getHobbies($_SESSION['cv_id']);
+$education = getEducation($_SESSION['cv_id']);
+$professionals = getProfessionals($_SESSION['cv_id']);
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-
     // delete education
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'delete_education_') === 0) {
             $education_id = substr($key, 17);
             deleteEducation($education_id);
             header('Location: profile.php');
-
         }
     }
 
@@ -35,7 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-
     // experience delete
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'delete_experience_') === 0) {
@@ -45,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // experience edit
+    // experience edit title
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'edit_experience_title_') === 0) {
             $edit_id = substr($key, 22);
@@ -53,6 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    // edit experience company
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'edit_experience_entreprise_') === 0) {
             $edit_id = substr($key, 27);
@@ -60,6 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+//    edit experience description
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'edit_experience_description_') === 0) {
             $edit_id = substr($key, 28);
@@ -114,16 +115,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-
-
 if (isset($_POST['deletePhoto'])) {
     deletePhoto($_SESSION['id']);
     header('Location: profile.php');
 }
-
-$hobb = getHobbies($_SESSION['cv_id']);
-$education = getEducation($_SESSION['cv_id']);
-$professionals = getProfessionals($_SESSION['cv_id']);
 
 if (isset($_POST['addProfessional'])) {
     addProfessional($_SESSION['cv_id'], $_POST['title'], $_POST['entreprise'], $_POST['description'], $_POST['begin_date'], $_POST['end_date']);
@@ -201,10 +196,7 @@ if (isset($_POST['sendPhoto'])) {
 
                 if (move_uploaded_file($tmp_name, $img_upload_path)) {
                     // Insert into Database
-                    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
-                    $req = $bdd->prepare('UPDATE user SET photo = ? WHERE id = ?');
-                    $req->execute(array($new_img_name, $_SESSION['id']));
-                    // Redirection après le téléchargement réussi
+                    updatePhoto($new_img_name, $_SESSION['id']);
                 } else {
                     $em = "Failed to move uploaded file.";
                 }
@@ -215,8 +207,4 @@ if (isset($_POST['sendPhoto'])) {
     } else {
         $em = "Unknown error occurred!";
     }
-
-    // Gérer les erreurs et rediriger si nécessaire
-    // header("Location: index.php?error=$em");
-    // exit();
 }

@@ -14,3 +14,4 @@ function deleteUser($id)
     $deleteUser->execute(array($id));
     header('Location: home.php');
 }
+

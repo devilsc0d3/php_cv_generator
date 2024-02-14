@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Moderne</title>
+    <title>CV 1</title>
     <style>
         /* Styles CSS pour le CV */
         @page {
@@ -42,7 +43,7 @@
             /*margin-top: 80px;*/
         }
 
-        .leftp {
+        .left_p {
             color: white;
         }
 
@@ -80,20 +81,19 @@
 
 
     ?>
-<!--    TODO extention gd -->
     <div class="left-section">
         <?php
         if ($user['photo'] != '') {
             echo "<img class='photo' src='http://localhost/phpctrl/src/uploads/imgs/IMG-65cbe69c5998c4.93701025.png' alt='User Photo'>";
         }
         ?>
-        <p class="leftp"><?php echo $user['name'] ?></p>
-        <p class="leftp"><?php echo $user['firstname'] ?></p>
-        <p class="leftp"><?php echo $user['address'] ?></p>
-        <p class="leftp"><?php echo $user['phone'] ?></p>
-        <p class="leftp"><?php echo $user['mail'] ?></p>
-        <p class="leftp"><?php echo $user['birth'] ?></p>
-        <p class="leftp"><?php echo $user['permisB'] ?></p>
+        <p class="left_p"><?php echo $user['name'] ?></p>
+        <p class="left_p"><?php echo $user['firstname'] ?></p>
+        <p class="left_p"><?php echo $user['address'] ?></p>
+        <p class="left_p"><?php echo $user['phone'] ?></p>
+        <p class="left_p"><?php echo $user['mail'] ?></p>
+        <p class="left_p"><?php echo $user['birth'] ?></p>
+        <p class="left_p"><?php echo $user['permisB'] ?></p>
 
 
         <h2>Hobbies</h2>
@@ -101,8 +101,8 @@
         $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
         $req = $bdd->prepare('SELECT * FROM hobbies where id_cv = ?');
         $req->execute(array($_SESSION['cv_idg']));
-        foreach ($req as $hobbie) {
-            echo "<p>" . $hobbie['description'] . "</p>";
+        foreach ($req as $hobby) {
+            echo "<p>" . $hobby['description'] . "</p>";
         }
         ?>
 
@@ -115,12 +115,12 @@
             $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
             $req2 = $bdd->prepare('SELECT * FROM education where id_cv = ?');
             $req2->execute(array($_SESSION['cv_idg']));
-            foreach ($req2 as $hobbie) {
+            foreach ($req2 as $education) {
                 echo "<div class='glass'>";
-                echo "<p>" . $hobbie['name'] . "</p>";
-                echo "<p>" . $hobbie['begin'] . "</p>";
-                echo "<p>" . $hobbie['end'] . "</p>";
-                echo "<p>" . $hobbie['description'] . "</p>";
+                echo "<p>" . $education['name'] . "</p>";
+                echo "<p>" . $education['begin'] . "</p>";
+                echo "<p>" . $education['end'] . "</p>";
+                echo "<p>" . $education['description'] . "</p>";
                 echo "</div>";
             }
             ?>

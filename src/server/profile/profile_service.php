@@ -1,18 +1,9 @@
 <?php
 
-
 function getHobbies($id)
 {
     $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
     $req = $bdd->prepare('SELECT * FROM hobbies where id_cv = ?');
-    $req->execute(array($id));
-    return $req;
-}
-
-function getExperiece($id)
-{
-    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
-    $req = $bdd->prepare('SELECT * FROM profesional_experience where id = ?');
     $req->execute(array($id));
     return $req;
 }
@@ -45,7 +36,6 @@ function deleteEducation($id)
     $req->execute(array($id));
 }
 
-
 function getEducation($id)
 {
     $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
@@ -61,14 +51,12 @@ function addEducation($name, $desc, $begin_date, $end_date, $id)
     $req->execute(array($id,$name, $desc, $begin_date, $end_date));
 }
 
-
 function deleteExperience($id)
 {
     $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
     $req = $bdd->prepare('DELETE FROM profesional_experience WHERE id = ?');
     $req->execute(array($id));
 }
-
 
 function editExperienceTitle($id, $title)
 {
@@ -77,12 +65,11 @@ function editExperienceTitle($id, $title)
     $req->execute(array($title, $id));
 }
 
-
-function addProfessional($id, $title, $entreprise, $description, $begin_date, $end_date)
+function addProfessional($id, $title, $company, $description, $begin_date, $end_date)
 {
     $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
     $req = $bdd->prepare('INSERT INTO profesional_experience(id_cv, title, entreprise, description, begin, end) VALUES(?, ?, ?, ?, ?, ?)');
-    $req->execute(array($id, $title, $entreprise, $description, $begin_date, $end_date));
+    $req->execute(array($id, $title, $company, $description, $begin_date, $end_date));
 
 }
 
@@ -94,12 +81,11 @@ function getProfessionals($id)
     return $req->fetchAll();
 }
 
-
-function editExperienceEntreprise($id, $entreprise)
+function editExperienceEntreprise($id, $company)
 {
     $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
     $req = $bdd->prepare('UPDATE profesional_experience SET entreprise = ? WHERE id = ?');
-    $req->execute(array($entreprise, $id));
+    $req->execute(array($company, $id));
 }
 
 function editExperienceDescription($id, $description)
@@ -122,6 +108,7 @@ function editExperienceEnd($id, $end)
     $req = $bdd->prepare('UPDATE profesional_experience SET end = ? WHERE id = ?');
     $req->execute(array($end, $id));
 }
+
 function editEducation($id, $education)
 {
     $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
@@ -150,11 +137,6 @@ function editEducationEnd($id, $end)
     $req->execute(array($end, $id));
 }
 
-
-
-
-
-
 //general
 function updateName($name, $id)
 {
@@ -176,14 +158,12 @@ function updateAddress($address, $id)
     $req->execute(array($address, $id));
 }
 
-
 function updatePhone($phone, $id)
 {
     $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
     $req = $bdd->prepare('UPDATE user SET phone = ? WHERE id = ?');
     $req->execute(array($phone, $id));
 }
-
 
 function updateEmail($email, $id)
 {
@@ -204,6 +184,13 @@ function updateLicenseB($license, $id)
     $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
     $req = $bdd->prepare('UPDATE user SET permisB = ? WHERE id = ?');
     $req->execute(array($license, $id));
+}
+
+function updatePhoto($photo,$id)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    $req = $bdd->prepare('UPDATE user SET photo = ? WHERE id = ?');
+    $req->execute(array($photo, $id));
 }
 
 function deletePhoto($id) {

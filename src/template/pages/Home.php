@@ -40,7 +40,7 @@ if (!isset($_SESSION['mdp'])) {
     ?>
     <section>
         <form action="" method="post">
-            <div class="h backgroundtitle"><h1>Profils</h1></div>
+            <div class="h backgroundTitle"><h1>Profiles</h1></div>
         <section class="profile">
             <?php
             global $presets;
@@ -72,7 +72,7 @@ if (!isset($_SESSION['mdp'])) {
         </section>
 
         <section>
-            <div class="backgroundtitle">
+            <div class="backgroundTitle">
                 <h1>CV template</h1>
             </div>
             <section class="template">

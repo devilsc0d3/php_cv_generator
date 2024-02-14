@@ -30,7 +30,7 @@ if (isset($_POST['send'])) {
         $getUser->execute(array($pseudo));
 
         if ($getUser->rowCount() > 0) {
-            $user = $getUser->fetch(); // Récupère la première ligne de résultat
+            $user = $getUser->fetch();
             $_SESSION['pseudo'] = $pseudo;
             $_SESSION['mdp'] = $mdp;
             $_SESSION['id'] = $user['id'];
@@ -52,8 +52,6 @@ function registerController($mail, $mdp, $pseudo): array
         pseudoIsEmpty($pseudo),
         passwordIsEmpty($mdp),
         lenMinimum($mdp),
-//        isSpecialCharacter($mdp),
-//        isLowercaseAndUppercaseDigit($mdp),
         emailValid($mail),
     ];
 
