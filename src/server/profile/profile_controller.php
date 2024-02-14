@@ -203,7 +203,7 @@ $professionals = getProfessionals($_SESSION['cv_id']);
 
 if (isset($_POST['addProfessional'])) {
     addProfessional($_SESSION['cv_id'], $_POST['title'], $_POST['entreprise'], $_POST['description'], $_POST['begin_date'], $_POST['end_date']);
-//    header('Location: profile.php');
+    header('Location: profile.php');
 }
 
 function addProfessional($id, $title, $entreprise, $description, $begin_date, $end_date)
@@ -211,7 +211,6 @@ function addProfessional($id, $title, $entreprise, $description, $begin_date, $e
     $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
     $req = $bdd->prepare('INSERT INTO profesional_experience(id_cv, title, entreprise, description, begin, end) VALUES(?, ?, ?, ?, ?, ?)');
     $req->execute(array($id, $title, $entreprise, $description, $begin_date, $end_date));
-    header('Location: profidle.php');
 
 }
 

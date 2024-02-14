@@ -39,6 +39,7 @@
 
         h1, h2, h3 {
             color: #007bff;
+            /*margin-top: 80px;*/
         }
 
         .leftp {
@@ -46,7 +47,7 @@
         }
 
         p {
-            margin-bottom: 10px;
+            /*margin-bottom: 5px;*/
         }
 
         .glass {
@@ -57,6 +58,11 @@
             border-radius: 8px 25px 8px 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 15px;
+        }
+
+        .photo {
+            width: 250px;
+            border-radius: 100%;
         }
     </style>
 </head>
@@ -72,11 +78,15 @@
             return $req->fetch();
         }
 
+
     ?>
+<!--    TODO extention gd -->
     <div class="left-section">
-        <div class="glass">
-<!--            <img src="photo.jpg" alt="Photo">-->
-        </div>
+        <?php
+        if ($user['photo'] != '') {
+            echo "<img class='photo' src='http://localhost/phpctrl/src/uploads/imgs/IMG-65cbe69c5998c4.93701025.png' alt='User Photo'>";
+        }
+        ?>
         <p class="leftp"><?php echo $user['name'] ?></p>
         <p class="leftp"><?php echo $user['firstname'] ?></p>
         <p class="leftp"><?php echo $user['address'] ?></p>
@@ -86,20 +96,20 @@
         <p class="leftp"><?php echo $user['permisB'] ?></p>
 
 
+        <h2>Hobbies</h2>
+        <?php
+        $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+        $req = $bdd->prepare('SELECT * FROM hobbies where id_cv = ?');
+        $req->execute(array($_SESSION['cv_idg']));
+        foreach ($req as $hobbie) {
+            echo "<p>" . $hobbie['description'] . "</p>";
+        }
+        ?>
+
     </div>
     <div class="right-section">
         <section class="experience">
-            <h2>Hobbies</h2>
-            <?php
-            $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
-            $req = $bdd->prepare('SELECT * FROM hobbies where id_cv = ?');
-            $req->execute(array($_SESSION['cv_idg']));
-            foreach ($req as $hobbie) {
-                echo "<div class='glass'>";
-                echo "<p>" . $hobbie['description'] . "</p>";
-                echo "</div>";
-            }
-            ?>
+            <br>
             <h2>Education</h2>
             <?php
             $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
@@ -114,7 +124,22 @@
                 echo "</div>";
             }
             ?>
-            <!-- Ajouter d'autres expériences professionnelles ici si nécessaire -->
+            <br>
+            <h2>Experiences</h2>
+            <?php
+            $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+            $req3 = $bdd->prepare('SELECT * FROM profesional_experience where id_cv = ?');
+            $req3->execute(array($_SESSION['cv_idg']));
+            foreach ($req3 as $experience) {
+                echo "<div class='glass'>";
+                echo "<p>" . $experience['title'] . "</p>";
+                echo "<p>" . $experience['entreprise'] . "</p>";
+                echo "<p>" . $experience['description'] . "</p>";
+                echo "<p>" . $experience['begin'] . "</p>";
+                echo "<p>" . $experience['end'] . "</p>";
+                echo "</div>";
+            }
+            ?>
         </section>
     </div>
 
