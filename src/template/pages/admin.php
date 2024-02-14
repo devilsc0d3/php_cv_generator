@@ -11,7 +11,7 @@ if (!isset($_SESSION['pseudo'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HOME</title>
+    <title>admin</title>
     <link rel="stylesheet" href="../css/home.css">
 </head>
 

@@ -22,7 +22,7 @@ if (isset($_POST['send'])) {
 
         header('Location: Home.php');
     } else {
-        echo 'bad user';
+        echo "<p class='error'>bad user or password</p>";
     }
 }
 

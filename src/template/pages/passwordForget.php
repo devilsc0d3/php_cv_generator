@@ -1,11 +1,13 @@
 <?php
-include '../../server/authentication/user_service.php';
+include '../../server/authentication/passwordReset_controller.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="icon" href="../../img/logo.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Forget</title>
 </head>
 
 <style>
@@ -33,14 +35,10 @@ include '../../server/authentication/user_service.php';
     }
 
     form {
-        padding-top: 70px;
+        padding-top: 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-
-    label {
-        margin: 12px 0;
     }
 
     input {
@@ -83,7 +81,6 @@ include '../../server/authentication/user_service.php';
 
     .errorUser {
         position: absolute;
-
         top: 0;
         margin: 0;
         width: 100%;
@@ -96,34 +93,15 @@ include '../../server/authentication/user_service.php';
     </style>
 
 <body>
-<?php
-if (isset($_POST['send'])) {
-    $pseudo = htmlspecialchars($_POST['pseudo']);
-    $mdp = sha1($_POST['newPassword']);
-    $mail = htmlspecialchars($_POST['mail']);
-    if (check($mail, $pseudo) != null) {
-        updatePassword($mail, $mdp, $pseudo);
-        header('Location: login2.0.php');
-    } else {
-        echo '<p class="errorUser">bad email or nickname</p>';
-    }
-}
-?>
     <div class="glass">
-    <h1>new password</h1>
-    <form action="" method='POST'>
-        <label>
+        <h1>new password</h1>
+        <form action="" method='POST'>
             <input type="email" name="mail" placeholder="email" autocomplete="off">
-        </label>
-        <label>
             <input type="text" name="pseudo" placeholder="pseudo" autocomplete="off">
-        </label>
-        <label>
             <input type="password" name="newPassword" placeholder="new password" autocomplete="off">
-        </label>
-        <input type="submit" value="Send" name='send' autocomplete="off">
-    </form>
-    <a href="login2.0.php"><p>Do you already have an account?</p></a>
+            <input type="submit" value="Send" name='send' autocomplete="off">
+        </form>
+        <a href="login2.0.php"><p>Do you already have an account?</p></a>
     </div>
 
 </body>

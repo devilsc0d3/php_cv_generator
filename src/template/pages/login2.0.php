@@ -7,7 +7,7 @@ include '../../server/authentication/login_controller.php'
     <meta charset="UTF-8">
     <link rel="icon" href="../../img/logo.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 
 <style>
@@ -68,22 +68,35 @@ include '../../server/authentication/login_controller.php'
         border-bottom: 1px solid rgb(100, 107, 115);
         background: rgba(255,255,255,0);
     }
+
+
+    .error {
+        position: absolute;
+        top: 0;
+        margin: 0;
+        width: 100%;
+        height: 40px;
+        background-color: #ffbdbd;
+        color: #960000;
+        font-size: 30px;
+        font-family: "OCR A Extended", monospace;
+    }
+
     </style>
 
 <body>
-<div class="glass">
-    <div class="backgroundTitle">
-        <h1>Login</h1>
+    <div class="glass">
+        <div class="backgroundTitle">
+            <h1>Login</h1>
+        </div>
+        <form action="" method='POST'>
+            <input type="text" name='pseudo' id="pse" autocomplete="off" placeholder="nickname">
+            <input type="password" name="mdp" id="mdp" autocomplete="off" placeholder="password">
+            <input type="submit" value="Send" name='send' autocomplete="off" class="submit-btn">
+
+            <a href="passwordForget.php"><p>password forget ?</p></a>
+            <a href="register2.0.php"><p>create account now !</p></a>
+        </form>
     </div>
-    <form action="" method='POST'>
-        <input type="text" name='pseudo' id="pse" autocomplete="off" placeholder="nickname">
-
-        <input type="password" name="mdp" id="mdp" autocomplete="off" placeholder="password">
-
-        <input type="submit" value="Send" name='send' autocomplete="off" class="submit-btn">
-        <a href="passwordForget.php"><p>password forget ?</p></a>
-        <a href="register2.0.php"><p>create account now !</p></a>
-    </form>
-</div>
 </body>
 </html>

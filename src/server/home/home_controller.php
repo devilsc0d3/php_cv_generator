@@ -48,7 +48,7 @@ if (isset($_POST['delete'])) {
 //
 //    $dompdf = new Dompdf();
 //    ob_start();
-//    include "../../template/model/" . $template;
+//    include "../../template/models/" . $template;
 //    $html = ob_get_clean();
 //    $dompdf->loadHtml($html);
 //    $dompdf->setPaper('A4');
@@ -83,7 +83,7 @@ function pdfGenerator($template)
     $dompdf->setOptions($options);
 
     ob_start();
-    include "../../template/model/" . $template;
+    include "../../template/models/" . $template;
     $html = ob_get_clean();
     $dompdf->loadHtml($html);
 

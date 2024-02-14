@@ -6,7 +6,7 @@ include "../../server/home/home_controller.php";
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HOME</title>
+    <title>Home</title>
     <link rel="stylesheet" href="../css/home.css">
 </head>
 
