@@ -59,7 +59,7 @@ $user = getInfoUser($_SESSION['id']);
             </form>
 
             <?php
-                getPhoto();
+                getPhoto($_SESSION['id']);
             ?>
             <form method="post" enctype="multipart/form-data">
                 <input type="file" name="photo">

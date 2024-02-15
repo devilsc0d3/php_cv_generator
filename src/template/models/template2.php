@@ -23,7 +23,7 @@
             position: absolute;
             margin: 0 0 0 0;
             width: 30%;
-            background-color: #007bff;
+            background-color: #003e81;
             color: #fff;
             border-radius: 0 0 25px 0;
             padding: 20px;
@@ -39,7 +39,7 @@
         }
 
         h1, h2, h3 {
-            color: #007bff;
+            color: #003e81;
             /*margin-top: 80px;*/
         }
 
@@ -84,7 +84,17 @@
     <div class="left-section">
         <?php
         if ($user['photo'] != '') {
-            echo "<img class='photo' src='http://localhost/phpctrl/src/uploads/imgs/IMG-65cbe69c5998c4.93701025.png' alt='User Photo'>";
+            function getPhoto($id)
+            {
+                $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+                $req = $bdd->prepare('SELECT photo FROM user WHERE id = ?');
+                $req->execute(array($id));
+                $res = $req->fetch();
+                if ($res && $res["photo"]) {
+                    echo "<img class='photo' src='http://localhost/phpctrl/src/uploads/imgs/" . $res["photo"] . "' alt='User Photo'>";
+                }
+            }
+            getPhoto($_SESSION['id']);
         }
         ?>
         <p class="left_p"><?php echo $user['name'] ?></p>

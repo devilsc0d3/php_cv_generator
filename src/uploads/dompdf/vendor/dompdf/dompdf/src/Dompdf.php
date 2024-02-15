@@ -37,7 +37,7 @@ use Masterminds\HTML5;
  * http://www.w3.org/TR/CSS21/visuren.html#propdef-display}).
  * Frame_Decorators augment the basic {@link Frame} class by adding
  * additional properties and methods specific to the particular type of
- * {@link Frame}.  For example, in the CSS layout model, block frames
+ * {@link Frame}.  For example, in the CSS layout models, block frames
  * (display: block;) contain line boxes that are usually filled with text or
  * other inline frames.  The Block therefore adds a $lines
  * property as well as methods to add {@link Frame}s to lines and to add

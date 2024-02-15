@@ -173,11 +173,11 @@ function updatePhone($phone, $id)
     $req->execute(array($phone, $id));
 }
 
-function getPhoto()
+function getPhoto($id)
 {
     $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
     $req = $bdd->prepare('SELECT photo FROM user WHERE id = ?');
-    $req->execute(array($_SESSION['id']));
+    $req->execute(array($id));
     $res = $req->fetch();
     if ($res && $res["photo"]) {
         echo "<img class='photo' src='../../uploads/imgs/" . $res["photo"] . "' alt='User Photo'>";

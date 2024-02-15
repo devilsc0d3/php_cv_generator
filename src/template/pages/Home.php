@@ -82,18 +82,21 @@ if (!isset($_SESSION['mdp'])) {
             <section class="template">
                     <div class="container">
                         <div class="glass2">
+                            <img src="../../img/cv1.png " alt="template1" class="cv">
                         </div>
                         <input type="radio" name="template" value="template1">
                     </div>
 
                     <div class="container">
                         <div class="glass2">
+                            <img src="../../img/cv2.png " alt="template1" class="cv">
                         </div>
                         <input type="radio" name="template" value="template2">
                     </div>
 
                     <div class="container">
                         <div class="glass2">
+                            <img src="../../img/cv3.png " alt="template1" class="cv">
                         </div>
                         <input type="radio" name="template" value="template3">
                     </div>

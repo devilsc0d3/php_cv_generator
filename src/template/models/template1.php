@@ -20,6 +20,7 @@
         }
 
         .left-section {
+            font-family: 'OCR A Extended', monospace;
             position: absolute;
             margin: 0 0 0 0;
             width: 30%;
@@ -29,13 +30,15 @@
             padding: 20px;
             box-sizing: border-box;
             align-items: center;
-            height: 27cm; /* Hauteur d'une page A4 */
+            height: 27cm;
         }
 
 
         .right-section {
             position: absolute;
             margin: 0 0 0 40%;
+            font-family: "OCR A Extended", monospace;
+            color: #000000;
         }
 
         h1, h2, h3 {
@@ -84,7 +87,17 @@ function getInfoUser2($id)
 <div class="left-section">
     <?php
     if ($user['photo'] != '') {
-        echo "<img class='photo' src='http://localhost/phpctrl/src/uploads/imgs/IMG-65cbe69c5998c4.93701025.png' alt='User Photo'>";
+        function getPhoto($id)
+        {
+            $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+            $req = $bdd->prepare('SELECT photo FROM user WHERE id = ?');
+            $req->execute(array($id));
+            $res = $req->fetch();
+            if ($res && $res["photo"]) {
+                echo "<img class='photo' src='http://localhost/phpctrl/src/uploads/imgs/" . $res["photo"] . "' alt='User Photo'>";
+            }
+        }
+        getPhoto($_SESSION['id']);
     }
     ?>
     <p class="left_p"><?php echo $user['name'] ?></p>
