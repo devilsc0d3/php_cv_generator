@@ -15,12 +15,12 @@ function deleteUser($id)
     header('Location: home.php');
 }
 
-function addRoleAdmin($id)
-{
-    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
-    $addRole = $bdd->prepare('UPDATE user SET role = "1" WHERE id = ?');
-    $addRole->execute(array($id));
-}
+//function addRoleAdmin($id)
+//{
+//    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
+//    $addRole = $bdd->prepare('UPDATE user SET role = "1" WHERE id = ?');
+//    $addRole->execute(array($id));
+//}
 
 function getPresets()
 {

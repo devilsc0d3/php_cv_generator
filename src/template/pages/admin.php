@@ -14,7 +14,26 @@ if (!isset($_SESSION['pseudo'])) {
     <title>admin</title>
     <link rel="stylesheet" href="../css/home.css">
 </head>
-
+<style>
+    .account_view {
+        font-size: 20px;
+        font-family: "Berlin Sans FB", serif;
+        font-weight: 600;
+        text-align: center;
+        color: #0057b6;
+        width: 200px;
+        height: 100px;
+        border-radius: 20px;
+        margin: 0 0 0 100px;
+        background-color: #7dd3fa;
+    }
+    .submit-btn {
+        margin-top: 20px;
+    }
+    strong {
+        font-size: 50px;
+    }
+</style>
 <body>
 <header>
     <a href="Home.php"><h1>CvGeneratorPhp</h1></a>
@@ -30,19 +49,26 @@ if (!isset($_SESSION['pseudo'])) {
     }
     ?>
 </header>
+
     <?php
         $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
         $req = $bdd->prepare('SELECT COUNT(*) FROM user');
         $req->execute();
         $count = $req->fetch();
-        echo '<p>count of account : '. $count[0] .'</p>';
+        echo '<div class="account_view">';
+        echo '<p>count of account : <br><strong>'. $count[0] .'</strong></p>';
+        echo '</div>';
 
         $req = $bdd->prepare('SELECT COUNT(*) FROM user where role = "1"');
         $req->execute();
         $count = $req->fetch();
-        echo '<p>count of admin : '. $count[0] .'</p>';
+    echo '<div class="account_view">';
 
-        echo '<form action="" method="post">';
+    echo '<p>count of admin : <br><strong>'. $count[0] .'</strong></p>';
+    echo '</div>';
+
+
+    echo '<form action="" method="post">';
         echo '<input type="text" placeholder="search pseudo" name="user">';
         echo '<input type="submit" value="search" name="search" autocomplete="off" class="submit-btn">';
         echo '</form>';
@@ -79,6 +105,13 @@ if (!isset($_SESSION['pseudo'])) {
         if (isset($_POST['add_role_admin'])) {
             addRoleAdmin($_SESSION['userIdAdmin']['id']);
         }
+
+    function addRoleAdmin($id)
+    {
+        $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
+        $addRole = $bdd->prepare('UPDATE user SET role = "1" WHERE id = ?');
+        $addRole->execute(array($id));
+    }
 
  ?>
 
