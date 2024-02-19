@@ -1,5 +1,7 @@
 <?php
 include '../../server/authentication/passwordReset_controller.php';
+include "../../server/Language.php";
+global $Language;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +9,7 @@ include '../../server/authentication/passwordReset_controller.php';
     <meta charset="UTF-8">
     <link rel="icon" href="../../img/logo.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Forget</title>
+    <title><?php echo $Language->pagePasswordForget['password_forget']; ?></title>
 </head>
 
 <style>
@@ -49,6 +51,7 @@ include '../../server/authentication/passwordReset_controller.php';
     }
 
     input[type="submit"] {
+        margin: 20px;
         background-color: #007bff;
         color: #fff;
         cursor: pointer;
@@ -90,19 +93,36 @@ include '../../server/authentication/passwordReset_controller.php';
         font-size: 30px;
         font-family: "OCR A Extended", monospace;
     }
+
+    .home {
+        padding-left: 35px;
+        z-index: 1;
+        position: absolute;
+        top: 80px;
+        font-family: "Berlin Sans FB", serif;
+        font-size: 60px;
+        color: #0058a1;
+        text-align: center;
+    }
     </style>
 
 <body>
+<a href="Home.php"><h1 class="home"><?php echo $Language->pagePasswordForget['title']; ?></h1></a>
     <div class="glass">
-        <h1>new password</h1>
+        <h1><?php echo $Language->pagePasswordForget['new_password']; ?></h1>
         <form action="" method='POST'>
-            <input type="email" name="mail" placeholder="email" autocomplete="off">
-            <input type="text" name="pseudo" placeholder="pseudo" autocomplete="off">
-            <input type="password" name="newPassword" placeholder="new password" autocomplete="off">
-            <input type="submit" value="Send" name='send' autocomplete="off">
+            <label>
+                <input type="email" name="mail" placeholder="<?php echo $Language->pagePasswordForget['email']; ?>" autocomplete="off">
+            </label>
+            <label>
+                <input type="text" name="pseudo" placeholder="<?php echo $Language->pagePasswordForget['nickname']; ?>" autocomplete="off">
+            </label>
+            <label>
+                <input type="password" name="newPassword" placeholder="<?php echo $Language->pagePasswordForget['new_password']; ?>" autocomplete="off">
+            </label>
+            <input type="submit" value="<?php echo $Language->pagePasswordForget['submit']; ?>" name='send' autocomplete="off">
         </form>
-        <a href="login2.0.php"><p>Do you already have an account?</p></a>
+        <a href="login2.0.php"><p><?php echo $Language->pagePasswordForget['already_account']; ?></p></a>
     </div>
-
 </body>
 </html>

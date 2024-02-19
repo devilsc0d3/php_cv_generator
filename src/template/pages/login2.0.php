@@ -1,5 +1,7 @@
 <?php
-include '../../server/authentication/login_controller.php'
+include '../../server/authentication/login_controller.php';
+include '../../server/Language.php';
+global $Language;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +13,16 @@ include '../../server/authentication/login_controller.php'
 </head>
 
 <style>
+    .home {
+        z-index: 1;
+        position: absolute;
+        top: 100px;
+        padding-left: 35px;
+        font-family: "Berlin Sans FB", serif;
+        font-size: 60px;
+        color: #0058a1;
+        text-align: center;
+    }
     body {
         background-color: #e4faff;
         display: flex;
@@ -21,7 +33,8 @@ include '../../server/authentication/login_controller.php'
     }
 
     .glass {
-        background-color: rgba(255, 255, 255, 0.8);
+        z-index: 10;
+        background-color: rgba(255, 255, 255, 1);
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -85,17 +98,18 @@ include '../../server/authentication/login_controller.php'
     </style>
 
 <body>
+    <a href="Home.php"><h1 class="home"><?php echo $Language->pageLogin['title']; ?></h1></a>
     <div class="glass">
         <div class="backgroundTitle">
-            <h1>Login</h1>
+            <h1><?php echo $Language->pageLogin['login']; ?></h1>
         </div>
         <form action="" method='POST'>
-            <input type="text" name='pseudo' id="pse" autocomplete="off" placeholder="nickname">
-            <input type="password" name="mdp" id="mdp" autocomplete="off" placeholder="password">
-            <input type="submit" value="Send" name='send' autocomplete="off" class="submit-btn">
+            <label for="pse"></label><input type="text" name='pseudo' id="pse" autocomplete="off" placeholder=<?php echo $Language->pageLogin['nickname']; ?>>
+            <label for="mdp"></label><input type="password" name="mdp" id="mdp" autocomplete="off" placeholder="<?php echo $Language->pageLogin['password']; ?>">
+            <input type="submit" value=<?php echo $Language->pageLogin['submit']; ?> name='send' autocomplete="off" class="submit-btn">
 
-            <a href="passwordForget.php"><p>password forget ?</p></a>
-            <a href="register2.0.php"><p>create account now !</p></a>
+            <a href="passwordForget.php"><p><?php echo $Language->pageLogin['forgot']; ?></p></a>
+            <a href="register2.0.php"><p><?php echo $Language->pageLogin['create_account']; ?></p></a>
         </form>
     </div>
 </body>

@@ -1,5 +1,7 @@
 <?php
-include '../../server/authentication/register_controller.php'
+include '../../server/authentication/register_controller.php';
+include "../../server/Language.php";
+global $Language;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +22,19 @@ include '../../server/authentication/register_controller.php'
         margin: 0;
     }
 
+    .home {
+        padding-left: 35px;
+        z-index: 1;
+        position: absolute;
+        top: 50px;
+        font-family: "Berlin Sans FB", serif;
+        font-size: 60px;
+        color: #0058a1;
+        text-align: center;
+    }
+
     .glass {
+        z-index: 10;
         background-color: rgba(255, 255, 255, 0.8);
         padding: 20px;
         border-radius: 10px;
@@ -48,7 +62,6 @@ include '../../server/authentication/register_controller.php'
     }
 
     input {
-        padding: 10px;
         border: 1px solid #000;
         width: 300px;
         margin: 10px;
@@ -57,6 +70,7 @@ include '../../server/authentication/register_controller.php'
     input[type="submit"] {
         border-radius: 5px;
         margin: 20px;
+        padding: 10px;
         background-color: #007bff;
         color: #fff;
         cursor: pointer;
@@ -96,16 +110,17 @@ include '../../server/authentication/register_controller.php'
 </style>
 
 <body>
+<a href="Home.php"><h1 class="home"><?php echo $Language->pageRegister['title']; ?></h1></a>
 <div class="glass">
     <div class="backgroundTitle">
-        <h1>Register</h1>
+        <h1><?php echo $Language->pageRegister['register']; ?></h1>
     </div>
     <form action="" method='POST'>
-        <input type="text" name='pseudo' id="pse" autocomplete="off" placeholder="nickname">
+        <label for="pse"></label><input type="text" name='pseudo' id="pse" autocomplete="off" placeholder=<?php echo $Language->pageRegister['nickname']; ?>>
 
-        <input type="email" name="mail" id="mail" autocomplete="off" placeholder="email">
+        <label for="mail"></label><input type="email" name="mail" id="mail" autocomplete="off" placeholder=<?php echo $Language->pageRegister['email']; ?>>
 
-        <input type="password" name="mdp" id="mdp" autocomplete="off" placeholder="password">
+        <label for="mdp"></label><input type="password" name="mdp" id="mdp" autocomplete="off" placeholder="<?php echo $Language->pageRegister['password'];?>">
         <?php
         global $errors;
         if (!empty($errors)) {
@@ -119,8 +134,8 @@ include '../../server/authentication/register_controller.php'
         }
         ?>
 
-        <input type="submit" value="Send" name='send' autocomplete="off" class="submit-btn">
-        <a href="login2.0.php"><p>Do you already have an account?</p></a>
+        <input type="submit" value="<?php echo $Language->pageRegister['submit']; ?>" name='send' autocomplete="off" class="submit-btn">
+        <a href="login2.0.php"><p><?php echo $Language->pageRegister['already_account']; ?></p></a>
     </form>
 </div>
 </body>
