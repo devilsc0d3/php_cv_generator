@@ -10,7 +10,6 @@ class Language
     public array $pageAdmin;
     public array $pageProfile;
     public array $page404;
-    public array $pageTemplate;
 
     function __construct()
     {
