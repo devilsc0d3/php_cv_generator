@@ -22,6 +22,7 @@ class Language
         $this->englishRegister();
         $this->englishPasswordForget();
         $this->english404();
+        $this->englishHome();
     }
 
     function french()
@@ -30,6 +31,7 @@ class Language
         $this->frenchRegister();
         $this->frenchPasswordForget();
         $this->french404();
+        $this->frenchHome();
     }
 
     function frenchLogin() {
@@ -126,5 +128,37 @@ class Language
             "title" => "CVifyPHP",
             "error" => "Error 404",
             "return" => "Return to home page");
+    }
+
+    function englishHome() {
+        $this->pageHome = array(
+            "lang" => "en",
+            "title" => "CVifyPHP",
+            "home" => "Home",
+            "logout" => "Logout",
+            "login" => "Login",
+            "register" => "Register",
+            "admin" => "Admin",
+            "delete" => "Delete account",
+            "credit" => "By Fauré Léo",
+            "profile" => "Profiles",
+            "template" => "CV Template",
+            "convert" => "Convert to PDF");
+    }
+
+    function frenchHome() {
+        $this->pageHome = array(
+            "lang" => "fr",
+            "title" => "CVifyPHP",
+            "home" => "Accueil",
+            "logout" => "Déconnexion",
+            "login" => "Connexion",
+            "register" => "Inscription",
+            "admin" => "Admin",
+            "delete" => "Supprimer le compte",
+            "credit" => "Par Fauré Léo",
+            "profile" => "Profils",
+            "template" => "Modèle de CV",
+            "convert" => "Convertir en PDF");
     }
 }

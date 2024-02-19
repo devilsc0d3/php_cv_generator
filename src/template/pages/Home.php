@@ -1,29 +1,31 @@
 <?php
 include "../../server/home/home_controller.php";
+include "../../server/Language.php";
+global $Language;
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>CVIfyPhp</title>
     <link rel="stylesheet" href="../css/home.css">
 </head>
 
 <body>
 <header>
-    <a href="Home.php"><h1>CvGeneratorPhp</h1></a>
+    <a href="Home.php"><h1><?php echo $Language->pageHome['title']; ?></h1></a>
     <?php
     if (isset($_SESSION['pseudo'])) {
-        echo '<a href="logout.php"><h1>logout</h1></a>';
+        echo '<a href="logout.php"><h1>'.$Language->pageHome['logout'].'</h1></a>';
         if ($_SESSION['role'] == 1) {
-            echo '<a href="admin.php"><h1>admin</h1></a>';
+            echo '<a href="admin.php"><h1>'.$Language->pageHome['admin'].'</h1></a>';
         }
         echo '<form action="" method="post">';
-        echo '<input type="submit" class="delete" value="delete account" name="delete">';
+        echo '<input type="submit" class="delete" value="'. $Language->pageHome['delete'].'" name="delete">';
         echo '</form>';
     } else {
-        echo '<a href="https://lesjoiesducode.fr/nicolas-cage-pedro-pascal-chef-deadline"><h1>By Fauré léo</h1></a>';
+        echo '<a href="https://lesjoiesducode.fr/nicolas-cage-pedro-pascal-chef-deadline"><h1>'. $Language->pageHome['credit'].'</h1></a>';
     }
     ?>
 </header>
@@ -32,9 +34,9 @@ if (!isset($_SESSION['mdp'])) {
     ?>
     <div class="center"><img src="../../img/login.svg" alt="image login"></div>
     <div class="center2">
-        <a href="register2.0.php"><h1 class="center2">Register</h1></a>
+        <a href="register2.0.php"><h1 class="center2"><?php echo $Language->pageHome['register']; ?></h1></a>
         <h1 class="center2"> / </h1>
-        <a href="login2.0.php"><h1 class="center2">Login</h1></a>
+        <a href="login2.0.php"><h1 class="center2"><?php echo $Language->pageHome['login']; ?></h1></a>
     </div>
     <?php
 } else {
@@ -42,7 +44,7 @@ if (!isset($_SESSION['mdp'])) {
     ?>
     <section>
         <form action="" method="post">
-            <div class="h backgroundTitle"><h1>Profiles</h1></div>
+            <div class="h backgroundTitle"><h1><?php echo $Language->pageHome['profile']; ?></h1></div>
         <section class="profile">
             <?php
             if (isset($_SESSION['id'])) {
@@ -61,7 +63,9 @@ if (!isset($_SESSION['mdp'])) {
 
                 ?>
 
-                <br><input type='radio' name='preset' value='<?php echo $preset['id']; ?>'>
+                <br><label>
+                    <input type='radio' name='preset' value='<?php echo $preset['id']; ?>'>
+                </label>
 
                 <?php
                 echo '</div>';
@@ -77,32 +81,38 @@ if (!isset($_SESSION['mdp'])) {
 
         <section>
             <div class="backgroundTitle">
-                <h1>CV template</h1>
+                <h1><?php echo $Language->pageHome['template']; ?></h1>
             </div>
             <section class="template">
                     <div class="container">
                         <div class="glass2">
                             <img src="../../img/cv1.png " alt="template1" class="cv">
                         </div>
-                        <input type="radio" name="template" value="template1">
+                        <label>
+                            <input type="radio" name="template" value="template1">
+                        </label>
                     </div>
 
                     <div class="container">
                         <div class="glass2">
                             <img src="../../img/cv2.png " alt="template1" class="cv">
                         </div>
-                        <input type="radio" name="template" value="template2">
+                        <label>
+                            <input type="radio" name="template" value="template2">
+                        </label>
                     </div>
 
                     <div class="container">
                         <div class="glass2">
                             <img src="../../img/cv3.png " alt="template1" class="cv">
                         </div>
-                        <input type="radio" name="template" value="template3">
+                        <label>
+                            <input type="radio" name="template" value="template3">
+                        </label>
                     </div>
             </section>
             <div class="width">
-                <input type="submit" class="convert" value="convert to pdf" name="convert">
+                <input type="submit" class="convert" value="<?php echo $Language->pageHome['convert']; ?>" name="convert">
             </div>
         </section>
         </form>
