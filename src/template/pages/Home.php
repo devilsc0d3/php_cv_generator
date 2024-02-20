@@ -134,7 +134,7 @@ if (!isset($_SESSION['mdp'])) {
             echo '<form action="" method="post" class="history_section">';
             echo '<a href="http://localhost/phpctrl/src/uploads/history/'. $history['cv']. '"><h1 class="history">http://localhost/phpctrl/src/uploads/history/' . $history['cv'] .'</h1></a>';
             echo '<div class="buttons">';
-            echo '<button class="sub share-btn" data-url="http://localhost/phpctrl/src/uploads/history/' . $history['cv'] . '">Share</button>';
+            echo '<button class="sub share-btn" data-url="http://localhost/phpctrl/src/uploads/history/' . $history['cv'] . '">'.$Language->pageHome['share'].'</button>';
             echo '<input type="submit" class="sub" value='.$Language->pageHome['del'].' name="delete_history_' . $history['id'] . '" autocomplete="off" class="submit-btn">';
             echo '</div>';
             echo '</form>';
