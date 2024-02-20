@@ -17,7 +17,7 @@ if (isset($_POST['send'])) {
         $_SESSION['pseudo'] = $pseudo;
         $_SESSION['mdp'] = $mdp;
         $_SESSION['id'] = $user['id'];
-        $_SESSION['lang'] = ['en'];
+        $_SESSION['lang'] = 'english';
         $_SESSION['role'] = $user['role'];
 
         header('Location: Home.php');

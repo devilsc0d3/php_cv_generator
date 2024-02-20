@@ -133,7 +133,10 @@ if (!isset($_SESSION['mdp'])) {
         foreach ($histories as $history) {
             echo '<form action="" method="post" class="history_section">';
             echo '<a href="http://localhost/phpctrl/src/uploads/history/'. $history['cv']. '"><h1 class="history">http://localhost/phpctrl/src/uploads/history/' . $history['cv'] .'</h1></a>';
+            echo '<div class="buttons">';
+            echo '<button class="sub share-btn" data-url="http://localhost/phpctrl/src/uploads/history/' . $history['cv'] . '">Share</button>';
             echo '<input type="submit" class="sub" value='.$Language->pageHome['del'].' name="delete_history_' . $history['id'] . '" autocomplete="off" class="submit-btn">';
+            echo '</div>';
             echo '</form>';
         }
         ?>
@@ -143,3 +146,18 @@ if (!isset($_SESSION['mdp'])) {
 ?>
 </body>
 </html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.share-btn').click(function(){
+            const urlToCopy = $(this).data('url');
+            const tempInput = $('<input>');
+            $('body').append(tempInput);
+            tempInput.val(urlToCopy).select();
+            document.execCommand('copy');
+            tempInput.remove();
+            alert('URL copied to clipboard, share cv !');
+        });
+    });
+</script>
