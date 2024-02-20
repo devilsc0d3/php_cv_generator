@@ -40,7 +40,7 @@ if (!isset($_SESSION['mdp'])) {
     </div>
     <?php
 } else {
-    echo '<h1 class="name">Hello ' . $_SESSION["pseudo"] . '!</h1>';
+    echo '<h1 class="name">'. $Language->pageHome['hi'] . $_SESSION["pseudo"] . '!</h1>';
     ?>
     <section>
         <form action="" method="post">
@@ -59,7 +59,7 @@ if (!isset($_SESSION['mdp'])) {
                 echo "<button type='submit' autocomplete='off' class='profileButton glass' name='profile' value='" . $preset['id'] . "' >";
                 echo "<p>" . $preset['title'] . "</p>";
                 echo "</button>";
-                echo '<input type="submit" class="sub" value="delete" name="delete_preset_' . $preset['id'] . '" autocomplete="off" class="submit-btn">';
+                echo '<input type="submit" class="sub" value='.$Language->pageHome['del'].' name="delete_preset_' . $preset['id'] . '" autocomplete="off" class="submit-btn">';
 
                 ?>
 
@@ -73,9 +73,9 @@ if (!isset($_SESSION['mdp'])) {
             ?>
             <div class="glass input">
                 <label>
-                    <input type="text" placeholder="name of preset" name="name" autocomplete='off'>
+                    <input type="text" placeholder="<?php echo $Language->pageHome['preset name']; ?>" name="name" autocomplete='off'>
                 </label>
-                <input type="submit" class="sub" value="send" name="send">
+                <input type="submit" class="sub" value="<?php echo $Language->pageHome['submit']; ?>" name="send">
             </div>
         </section>
 
