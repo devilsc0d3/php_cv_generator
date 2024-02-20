@@ -35,6 +35,7 @@ if (isset($_POST['send'])) {
             $_SESSION['mdp'] = $mdp;
             $_SESSION['id'] = $user['id'];
             $_SESSION['role'] = $user['role'];
+            $_SESSION['lang'] = ['en'];
 
             header('Location: Home.php');
             exit();

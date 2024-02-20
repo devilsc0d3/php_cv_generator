@@ -11,10 +11,20 @@ global $Language;
     <title>CVIfyPhp</title>
     <link rel="stylesheet" href="../css/home.css">
 </head>
-
 <body>
 <header>
     <a href="Home.php"><h1><?php echo $Language->pageHome['title']; ?></h1></a>
+    <form action="" method="post" class="langue">
+        <label for="langue"></label><select id="langue" name="langue">
+            <option value="chinese">chinese</option>
+            <option value="french">Français</option>
+            <option value="english">english</option>
+            <option value="spanish">spanish</option>
+            <option value="german">german</option>
+            <option value="russian">russian</option>
+        </select>
+        <button type="submit" name="submit">Soumettre</button>
+    </form>
     <?php
     if (isset($_SESSION['pseudo'])) {
         echo '<a href="logout.php"><h1>'.$Language->pageHome['logout'].'</h1></a>';

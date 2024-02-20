@@ -1,3 +1,27 @@
+.langue {
+    margin: auto 0;
+}
+.langue select {
+    background: rgb(228, 250, 255);
+    border: none;
+    padding: 10px 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.langue button {
+    border-radius: 10px;
+    background: rgb(228, 250, 255);
+    border: none;
+    padding: 10px 10px;
+    font-size: 16px;
+}
+.langue button:hover {
+    background-color: #ffffff;
+}
 
 .glass {
     z-index: 10;

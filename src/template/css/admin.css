@@ -1,0 +1,42 @@
+.account_view {
+    font-size: 20px;
+    font-family: "Berlin Sans FB", serif;
+    font-weight: 600;
+    text-align: center;
+    color: #0057b6;
+    width: 200px;
+    height: 100px;
+    border-radius: 20px;
+    margin: 0 0 0 100px;
+    background-color: #7dd3fa;
+}
+.submit-btn {
+    margin-top: 20px;
+}
+strong {
+    font-size: 50px;
+}
+.view1 {
+    margin: 50px 0 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+.action {
+    margin: 0 20px 0 50px;
+    color: #0057b6;
+    font-family: "Berlin Sans FB", serif;
+    font-weight: 600;
+    width: 300px;
+    padding: 10px 10px 30px 40px;
+    border-radius: 20px;
+    background-color: #7dd3fa;
+}
+
+input[type="submit"] {
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}

@@ -1,6 +1,15 @@
 <?php
 
 $Language = new Language();
+
+
+if(isset($_POST['submit'])) {
+    if(isset($_POST['langue'])) {
+        $_SESSION['langue'] = $_POST['langue'];
+      $Language->changeLanguage($_POST['langue']);
+    }
+}
+
 class Language
 {
     public array $pageRegister;
@@ -12,7 +21,15 @@ class Language
 
     function __construct()
     {
-        $this->chinese();
+        if(isset($_SESSION['langue'])) {
+            $langue = $_SESSION['langue'];
+            $this->changeLanguage($langue);
+        } else {
+            $this->english();
+        }    }
+
+    function changeLanguage($lang) {
+        $this->$lang();
     }
 
     function english()
