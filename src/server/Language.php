@@ -4,9 +4,9 @@ $Language = new Language();
 
 
 if(isset($_POST['submit'])) {
-    if(isset($_POST['langue'])) {
-        $_SESSION['langue'] = $_POST['langue'];
-      $Language->changeLanguage($_POST['langue']);
+    if(isset($_POST['lang'])) {
+        $_SESSION['lang'] = $_POST['lang'];
+      $Language->changeLanguage($_POST['lang']);
     }
 }
 
@@ -21,12 +21,13 @@ class Language
 
     function __construct()
     {
-        if(isset($_SESSION['langue'])) {
-            $langue = $_SESSION['langue'];
-            $this->changeLanguage($langue);
+        if(isset($_SESSION['lang'])) {
+            $lang = $_SESSION['lang'];
+            $this->changeLanguage($lang);
         } else {
             $this->english();
-        }    }
+        }
+    }
 
     function changeLanguage($lang) {
         $this->$lang();

@@ -230,3 +230,21 @@ footer {
     border-radius: 20px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
+
+.history {
+    text-align: left;
+    color: #007fe7;
+    font-size: 20px;
+}
+
+.history_section {
+    margin: 20px;
+    padding: 20px;
+    color: #007fe7;
+
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+}

@@ -19,7 +19,7 @@ if(isset($_POST['convert'])) {
     $_SESSION['cv_idg'] = $_POST['preset'] ?? "";
     $_SESSION['template'] = $_POST['template'] ?? "";
     if (radioChecked($_SESSION['cv_idg'],$_SESSION['template'])) {
-        pdfGenerator($_POST['template'] . '.php');
+//        pdfGenerator($_POST['template'] . '.php');
         savePdfToFile($_POST['template'] . '.php');
     } else {
         echo '<p class="errorPreset">Please select a preset and template</p>';
@@ -143,8 +143,39 @@ function savePdfToFile($template)
     $pdfFileName = uniqid() . ".pdf";
 
     // Chemin où enregistrer le PDF sur le serveur
-    $pdfFilePath = $pdfFileName;
-
+    $pdfFilePath = '../../uploads/history/' . $pdfFileName;
+    addHistory($_SESSION['id'], $pdfFileName);
     // Enregistrer le PDF sur le serveur
     file_put_contents($pdfFilePath, $dompdf->output());
+}
+
+function addHistory($userId, $pdfFileName)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
+    $addHistory = $bdd->prepare('INSERT INTO history (id_user, cv) VALUES (?, ?)');
+    $addHistory->execute(array($userId, $pdfFileName));
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // delete history
+    foreach ($_POST as $key => $value) {
+        if (strpos($key, 'delete_history_') === 0) {
+            $historyId = substr($key, 15);
+            deleteHistory($historyId);
+            $cheminFichier = '../../uploads/history/' . getHistoryId($historyId)['cv'];
+            if (file_exists($cheminFichier)) {
+                unlink($cheminFichier);
+            }
+            header('Location: home.php');
+        }
+    }
+}
+
+function getHistoryId($id)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
+    $getHistory = $bdd->prepare('SELECT * FROM history WHERE id = ?');
+    $getHistory->execute(array($id));
+    return $getHistory->fetch();
 }

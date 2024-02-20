@@ -127,6 +127,16 @@ if (!isset($_SESSION['mdp'])) {
             </div>
         </section>
         </form>
+
+        <?php
+        $histories = getHistory($_SESSION['id']);
+        foreach ($histories as $history) {
+            echo '<form action="" method="post" class="history_section">';
+            echo '<a href="http://localhost/phpctrl/src/uploads/history/'. $history['cv']. '"><h1 class="history">http://localhost/phpctrl/src/uploads/history/' . $history['cv'] .'</h1></a>';
+            echo '<input type="submit" class="sub" value='.$Language->pageHome['del'].' name="delete_history_' . $history['id'] . '" autocomplete="off" class="submit-btn">';
+            echo '</form>';
+        }
+        ?>
     </section>
     <?php
 }

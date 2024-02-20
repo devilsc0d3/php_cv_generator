@@ -29,7 +29,6 @@ function getPresets($id)
     return $getPreset;
 }
 
-
 function deleteUser($id)
 {
     global $bdd;
@@ -37,4 +36,19 @@ function deleteUser($id)
 
     $deleteUser->execute(array($id));
     header('Location: home.php');
+}
+
+function getHistory($userId)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
+    $getHistory = $bdd->prepare('SELECT * FROM history WHERE id_user = ?');
+    $getHistory->execute(array($userId));
+    return $getHistory;
+}
+
+function deleteHistory($id)
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
+    $deleteHistory = $bdd->prepare('DELETE FROM history WHERE id = ?');
+    $deleteHistory->execute(array($id));
 }
