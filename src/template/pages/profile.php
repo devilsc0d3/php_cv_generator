@@ -15,6 +15,8 @@ $user = getInfoUser($_SESSION['id']);
     <meta charset="UTF-8">
     <title>CVIfyPHP</title>
     <link rel="stylesheet" href="../css/profile.css">
+    <link rel="icon" href="../../img/logo.jpg">
+
 </head>
 
 <body>

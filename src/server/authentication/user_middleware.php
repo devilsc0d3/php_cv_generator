@@ -28,7 +28,7 @@ function mailIsEmpty($mail)
 
 function passwordIsEmpty($mdp)
 {
-    if ($mdp == "") {
+    if ($mdp == "" || $mdp == null) {
         return "le mot de passe est vide";
     }
     return true;

@@ -1,124 +1,81 @@
-
-.selection {
-    z-index: 10;
-    margin: 80px auto auto;
-    width: 800px;
-    height: auto;
-
-    background: rgba(25,30,40, 0.14);
-    border-radius: 120px 90px 160px 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(19px);
-    -webkit-backdrop-filter: blur(19px);
-    border: 1px solid rgb(255, 255, 255);
-}
-
-h1 {
-    margin: 20px 20px 0 0;
-    font-family: "OCR A Extended", monospace;
-    font-size: 50px;
-    color: rgb(255, 255, 255);
-    padding-left: 10px;
-}
-
-.backgroundTitle{
-    margin: 20px 0 0 70px;
-    background-color: #007fe7;
-    border-radius: 30px 16px 50px 16px;
-    width: min-content;
-}
-label {
-    font-family: "OCR A Extended", monospace;
-    font-size: 23px;
-    margin: 20px 0 20px 5px;
-    color: rgb(255, 255, 255);
-}
-
-form {
-    margin: 20px 80px 0 80px;
-    display: grid;
-}
-
-input[type=text] {
-    width: 100%;
-    height: 50px;
-    outline: none;
-    color: white;
-    font-size: 22px;
-    border: 1px solid transparent;
-    border-bottom: 1px solid rgb(100, 107, 115);
-    background: rgba(255,255,255,0);
-}
-input[type=email] {
-    width: 100%;
-    height: 50px;
-    outline: none;
-    color: white;
-    font-size: 22px;
-    border: 1px solid transparent;
-    border-bottom: 1px solid rgb(100, 107, 115);
-    background: rgba(255,255,255,0);
-}
-input[type=password] {
-    width: 100%;
-    height: 50px;
-    outline: none;
-    color: white;
-    font-size: 22px;
-    border: 1px solid transparent;
-    border-bottom: 1px solid rgb(100, 107, 115);
-    background: rgba(255,255,255,0);
-}
-
-input[type=submit] {
-    width: 100px;
-    height: 60px;
-    margin: 20px 0 20px 0;
-    border-radius: 16px;
-    border: 1px solid transparent;
-    color: #ffffff;
-    outline: none;
-    font-family: "OCR A Extended", monospace;
-    font-size: 20px;
-    background-color: rgb(0, 146, 159);
-    box-shadow: 0 0 .2rem #fff,
-    0 0 .2rem #00e7e7,
-    0 0 2rem #00929f,
-    inset 0 0 1.3rem #00929f;
-}
-
-.svg1 {
+.home {
+    z-index: 1;
     position: absolute;
-    z-index: -1;
-    width: 800px;
-    margin-left: 50px;
+    top: 100px;
+    padding-left: 35px;
+    font-family: "Berlin Sans FB", serif;
+    font-size: 60px;
+    color: #0058a1;
+    text-align: center;
 }
-
-.svg2 {
-    position: absolute;
-    z-index: -1;
-    width: 600px;
-    right: 200px;
+body {
+    background-color: #e4faff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
 }
 
-.svg3 {
-    position: absolute;
-    z-index: -1;
-    width: 600px;
-    right: 400px;
-    margin-top: 300px;
-    rotate: 45deg;
+.glass {
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-html {
-    /*background: rgb(14, 16, 23);*/
-    background: rgb(228, 250, 255);
+h1 {
+    color: rgb(0, 127, 231);
+    font-family: "OCR A Extended", monospace;
+    font-size: 40px;
+    text-align: center;
 }
+
+form {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    width: 300px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    width: 100px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+input[type=text], input[type=email], input[type=password]{
+    height: 50px;
+    outline: none;
+    font-size: 22px;
+    border: 1px solid transparent;
+    border-bottom: 1px solid rgb(100, 107, 115);
+    background: rgba(255,255,255,0);
+}
+
 
 .error {
-    color: red;
-    font-size: 20px;
-    margin: 20px 0 20px 0;
-    text-shadow: 0 0 2px #c56d00;
+    position: absolute;
+    top: 0;
+    margin: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #ffbdbd;
+    color: #960000;
+    font-size: 30px;
+    font-family: "OCR A Extended", monospace;
 }

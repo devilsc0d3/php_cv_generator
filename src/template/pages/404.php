@@ -7,6 +7,7 @@ global $Language;
 <head>
     <meta charset="UTF-8">
     <title><?php echo $Language->page404['title']; ?></title>
+    <link rel="icon" href="../../img/logo.jpg">
     <link rel="stylesheet" href="../css/404.css">
 </head>
 

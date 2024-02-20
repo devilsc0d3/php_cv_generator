@@ -8,8 +8,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
 
 if (isset($_POST['send'])) {
     $pseudo = htmlspecialchars($_POST['pseudo']);
-//    $mdp = $_POST['mdp'];
-    $mdp = sha1($_POST['mdp']);
+    $mdp = $_POST['mdp'];
 
     $mail = htmlspecialchars($_POST['mail']);
 
@@ -24,7 +23,7 @@ if (isset($_POST['send'])) {
     }
 
     if (!$containsOtherThanOne) {
-        addUser($mail, $mdp, $pseudo);
+        addUser($mail, sha1($mdp), $pseudo);
 
         $getUser = $bdd->prepare('SELECT * FROM User where pseudo = ?');
         $getUser->execute(array($pseudo));

@@ -1,4 +1,10 @@
+todo :
+doc
+history
+template
+
 # Générateur de CV en ligne - Projet PHP B2
+
 
 Ce projet consiste à développer un générateur de CV en ligne en utilisant PHP. Les principales fonctionnalités comprennent la création de comptes, la collecte d'informations via des formulaires, la gestion des données dans une base de données, la génération de CV au format PDF, et la mise en place de procédures de contrôle et validation des données.
 

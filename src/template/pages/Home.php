@@ -9,13 +9,14 @@ global $Language;
 <head>
     <meta charset="UTF-8">
     <title>CVIfyPhp</title>
+    <link rel="icon" href="../../img/logo.jpg">
     <link rel="stylesheet" href="../css/home.css">
 </head>
 <body>
 <header>
     <a href="Home.php"><h1><?php echo $Language->pageHome['title']; ?></h1></a>
-    <form action="" method="post" class="langue">
-        <label for="langue"></label><select id="langue" name="langue">
+    <form action="" method="post" class="lang">
+        <label for="lang"></label><select id="lang" name="lang">
             <option value="chinese">chinese</option>
             <option value="french">Français</option>
             <option value="english">english</option>
@@ -23,7 +24,7 @@ global $Language;
             <option value="german">german</option>
             <option value="russian">russian</option>
         </select>
-        <button type="submit" name="submit">Soumettre</button>
+        <button type="submit" name="submit"><?php echo $Language->pageHome['submit']; ?></button>
     </form>
     <?php
     if (isset($_SESSION['pseudo'])) {

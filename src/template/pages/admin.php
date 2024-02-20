@@ -1,7 +1,8 @@
 <?php
 include "../../server/home/home_controller.php";
 include "../../server/admin/admin_service.php";
-
+include "../../server/Language.php";
+global $Language;
 if (!isset($_SESSION['pseudo'])) {
     header('Location: Home.php');
 }
@@ -15,12 +16,13 @@ if (!isset($_SESSION['pseudo'])) {
     <title>admin</title>
     <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="../css/admin.css">
+    <link rel="icon" href="../../img/logo.jpg">
 </head>
 <body>
 <header>
-    <a href="Home.php"><h1>CvGeneratorPhp</h1></a>
-    <form action="" method="post" class="langue">
-        <label for="langue"></label><select id="langue" name="langue">
+    <a href="Home.php"><h1><?php echo $Language->pageHome['title']; ?></h1></a>
+    <form action="" method="post" class="lang">
+        <label for="lang"></label><select id="lang" name="lang">
             <option value="chinese">chinese</option>
             <option value="french">Français</option>
             <option value="english">english</option>
@@ -28,7 +30,7 @@ if (!isset($_SESSION['pseudo'])) {
             <option value="german">german</option>
             <option value="russian">russian</option>
         </select>
-        <button type="submit" name="submit">Soumettre</button>
+        <button type="submit" name="submit"><?php echo $Language->pageHome['submit']; ?></button>
     </form>
     <a href="logout.php"><h1>logout</h1></a>
     <a href="admin.php"><h1>admin</h1></a>

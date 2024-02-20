@@ -1,7 +1,7 @@
-.langue {
+.lang {
     margin: auto 0;
 }
-.langue select {
+.lang select {
     background: rgb(228, 250, 255);
     border: none;
     padding: 10px 10px;
@@ -12,14 +12,14 @@
     -moz-appearance: none;
     appearance: none;
 }
-.langue button {
+.lang button {
     border-radius: 10px;
     background: rgb(228, 250, 255);
     border: none;
     padding: 10px 10px;
     font-size: 16px;
 }
-.langue button:hover {
+.lang button:hover {
     background-color: #ffffff;
 }
 

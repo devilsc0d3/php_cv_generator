@@ -12,6 +12,6 @@ if (isset($_POST['send'])) {
         echo '<p class="errorUser">bad email or nickname</p>';
     }
 }
-?>
+
 
 
