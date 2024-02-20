@@ -43,19 +43,6 @@ if (isset($_POST['delete'])) {
     header('Location: logout.php');
 }
 
-//function pdfGenerator($template)
-//{
-//    require_once '../../uploads/dompdf/autoload.inc.php';
-//
-//    $dompdf = new Dompdf();
-//    ob_start();
-//    include "../../template/models/" . $template;
-//    $html = ob_get_clean();
-//    $dompdf->loadHtml($html);
-//    $dompdf->setPaper('A4');
-//    $dompdf->render();
-//    $dompdf->stream('cv.pdf');
-//}
 
 
 function pdfGenerator($template)
@@ -147,6 +134,11 @@ function savePdfToFile($template)
     addHistory($_SESSION['id'], $pdfFileName);
     // Enregistrer le PDF sur le serveur
     file_put_contents($pdfFilePath, $dompdf->output());
+
+    $dompdf->stream('cv.pdf');
+    header('Location: home.php');
+    exit();
+
 }
 
 function addHistory($userId, $pdfFileName)
@@ -162,12 +154,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'delete_history_') === 0) {
             $historyId = substr($key, 15);
-            deleteHistory($historyId);
-            $cheminFichier = '../../uploads/history/' . getHistoryId($historyId)['cv'];
-            if (file_exists($cheminFichier)) {
-                unlink($cheminFichier);
+            $path = '../../uploads/history/' . getHistoryId($historyId)['cv'];
+            if (file_exists($path)) {
+                if (unlink($path)) {
+                    header('Location: home.php');
+                } else {
+                    echo "Erreur lors de la suppression du fichier : " . error_get_last()['message'];
+                }
             }
-            header('Location: home.php');
+            deleteHistory($historyId);
         }
     }
 }

@@ -1,6 +1,6 @@
 todo :
 doc
-history
+
 template
 
 # Générateur de CV en ligne - Projet PHP B2
