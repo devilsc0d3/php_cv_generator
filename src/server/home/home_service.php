@@ -1,10 +1,21 @@
 <?php
 
+function getDBConnection(): ?PDO
+{
+//    todo use this function in all the functions that need a db connection
+    try {
+        return new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
+    } catch (PDOException $e) {
+        echo "Erreur PDO: " . $e->getMessage();
+        return null;
+    }
+}
+
 function addPreset($id,$name)
 {
     $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
     $addPreset = $bdd->prepare('INSERT INTO preset(id_user,title) VALUES(?, ?)');
-            $addPreset->execute(array($id,$name));
+    $addPreset->execute(array($id,$name));
 }
 
 function deletePresetAndData($id)
