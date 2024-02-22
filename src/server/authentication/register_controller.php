@@ -9,11 +9,8 @@ $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
 if (isset($_POST['send'])) {
     $pseudo = htmlspecialchars($_POST['pseudo']);
     $mdp = $_POST['mdp'];
-
     $mail = htmlspecialchars($_POST['mail']);
-
     $errors = registerController($mail, $mdp, $pseudo);
-
     $containsOtherThanOne = false;
 
     foreach ($errors as $error) {
@@ -25,8 +22,7 @@ if (isset($_POST['send'])) {
     if (!$containsOtherThanOne) {
         addUser($mail, sha1($mdp), $pseudo);
 
-        $getUser = $bdd->prepare('SELECT * FROM User where pseudo = ?');
-        $getUser->execute(array($pseudo));
+        $getUser = getUser($pseudo, sha1($mdp));
 
         if ($getUser->rowCount() > 0) {
             $user = $getUser->fetch();
@@ -48,7 +44,7 @@ function registerController($mail, $mdp, $pseudo): array
 
     $middlewares = [
         mailIsEmpty($mail),
-        getUser($pseudo),
+        getUserMiddleware($pseudo),
         pseudoIsEmpty($pseudo),
         passwordIsEmpty($mdp),
         lenMinimum($mdp),

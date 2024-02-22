@@ -42,7 +42,7 @@ function emailValid($email)
     return "email non valide";
 }
 
-function getUser($pseudo)
+function getUserMiddleware($pseudo)
 {
     $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;', 'root', "");
     $getUser = $bdd->prepare('SELECT * FROM user WHERE pseudo = ?');

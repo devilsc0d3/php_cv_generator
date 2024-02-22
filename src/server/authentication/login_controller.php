@@ -2,15 +2,13 @@
 include 'user_middleware.php';
 include 'user_service.php';
 
-$bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
 session_start();
 if (isset($_POST['send'])) {
     $pseudo = htmlspecialchars($_POST['pseudo']);
     $mdp = sha1($_POST['mdp']);
-    controller($mdp,$pseudo);
 
-    $getUser = $bdd->prepare('SELECT * FROM user WHERE pseudo = ? and passw = ?');
-    $getUser->execute(array($pseudo, $mdp));
+    controller($mdp,$pseudo);
+    $getUser = getUser($pseudo, $mdp);
 
     if ($getUser->rowCount() > 0) {
         $user = $getUser->fetch();

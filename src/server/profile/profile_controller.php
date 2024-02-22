@@ -1,15 +1,26 @@
 <?php
+/**
+ * Profile Management System
+ * Ce script gère les opérations de gestion de profil utilisateur, y compris l'édition, la suppression et l'ajout d'informations.
+ *
+ * @author Fauré Léo
+ * @version 1.0
+ */
+
 include 'profile_service.php';
 
 session_start();
 
 $hobbies = getHobbies($_SESSION['cv_id']);
+
 $education = getEducation($_SESSION['cv_id']);
+
 $professionals = getProfessionals($_SESSION['cv_id']);
 
-
+// Gestion des requêtes POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // delete education
+
+    // Suppression de l'éducation
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'delete_education_') === 0) {
             $education_id = substr($key, 17);
@@ -18,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // delete hobbies
+    // Suppression des hobbies
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'delete_hobby_') === 0) {
             $hobby_id = substr($key, 13);
@@ -27,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // edit hobbies
+    // Edition des hobbies
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'edit_hobby_') === 0) {
             $hobby_id = substr($key, 11);
@@ -36,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // experience delete
+    // Suppression d'expérience
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'delete_experience_') === 0) {
             $delete_id = substr($key, 18);
@@ -45,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // experience edit title
+    // Edition du titre de l'expérience
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'edit_experience_title_') === 0) {
             $edit_id = substr($key, 22);
@@ -54,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // edit experience company
+    // Edition de l'entreprise de l'expérience
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'edit_experience_entreprise_') === 0) {
             $edit_id = substr($key, 27);
@@ -63,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-//    edit experience description
+    // Edition de la description de l'expérience
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'edit_experience_description_') === 0) {
             $edit_id = substr($key, 28);
@@ -72,6 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    // Edition de la date de début de l'expérience
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'edit_experience_begin_') === 0) {
             $edit_id = substr($key, 22);
@@ -80,6 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    // Edition de la date de fin de l'expérience
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'edit_experience_end_') === 0) {
             $edit_id = substr($key, 20);
@@ -88,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // education title
+    // Edition du titre de l'éducation
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'education_') === 0) {
             $education_id = substr($key, 10);
@@ -97,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // education desc
+    // Edition de la description de l'éducation
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'desc_') === 0) {
             $desc_id = substr($key, 5);
@@ -106,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // education begin
+    // Edition de la date de début de l'éducation
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'begin_') === 0) {
             $begin_id = substr($key, 6);
@@ -115,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // education end
+    // Edition de la date de fin de l'éducation
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'end_') === 0) {
             $end_id = substr($key, 4);
@@ -125,28 +138,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+// Gestion des autres actions
+
+// Suppression de la photo
 if (isset($_POST['deletePhoto'])) {
     deletePhoto($_SESSION['id']);
     header('Location: profile.php');
 }
 
+// Ajout d'une expérience professionnelle
 if (isset($_POST['addProfessional'])) {
     addProfessional($_SESSION['cv_id'], $_POST['title'], $_POST['entreprise'], $_POST['description'], $_POST['begin_date'], $_POST['end_date']);
     header('Location: profile.php');
 }
 
+// Ajout de hobbies
 if (isset($_POST['addHobbies'])) {
     addHobbies($_POST['hobbies'], $_SESSION['cv_id']);
     header('Location: profile.php');
 }
 
+// Ajout d'éducation
 if (isset($_POST['add_education'])) {
     addEducation($_POST['education'], $_POST['desc'], $_POST['begin_date'], $_POST['end_date'], $_SESSION['cv_id']);
     header('Location: profile.php');
 }
 
+// Mise à jour des informations générales
 
-//general
 if (isset($_POST['sendName'])) {
     updateName($_POST['name'], $_SESSION['id']);
     header('Location: profile.php');
@@ -157,12 +176,10 @@ if (isset($_POST['sendFirstName'])) {
     header('Location: profile.php');
 }
 
-
 if (isset($_POST['sendAddress'])) {
     updateAddress($_POST['address'], $_SESSION['id']);
     header('Location: profile.php');
 }
-
 
 if (isset($_POST['sendPhone'])) {
     updatePhone($_POST['phone'], $_SESSION['id']);
@@ -184,7 +201,6 @@ if (isset($_POST['sendLicenseB'])) {
     header('Location: profile.php');
 }
 
-
 if (isset($_POST['sendPhoto'])) {
     $img_name = $_FILES['photo']['name'];
     $img_size = $_FILES['photo']['size'];
@@ -193,7 +209,7 @@ if (isset($_POST['sendPhoto'])) {
 
     if ($error === 0) {
         if ($img_size > 125000) {
-            $em = "Sorry, your file is too large.";
+            $em = "Désolé, votre fichier est trop volumineux.";
         } else {
             $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
             $img_ex_lc = strtolower($img_ex);
@@ -205,16 +221,16 @@ if (isset($_POST['sendPhoto'])) {
                 $img_upload_path = '../../uploads/imgs/'.$new_img_name;
 
                 if (move_uploaded_file($tmp_name, $img_upload_path)) {
-                    // Insert into Database
+                    // Insérer dans la base de données
                     updatePhoto($new_img_name, $_SESSION['id']);
                 } else {
-                    $em = "Failed to move uploaded file.";
+                    $em = "Échec du déplacement du fichier téléchargé.";
                 }
             } else {
-                $em = "You can't upload files of this type";
+                $em = "Vous ne pouvez pas télécharger des fichiers de ce type";
             }
         }
     } else {
-        $em = "Unknown error occurred!";
+        $em = "Une erreur inconnue s'est produite!";
     }
 }

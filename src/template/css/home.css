@@ -253,3 +253,15 @@ footer {
     justify-content: space-around;
     margin: 20px;
 }
+
+.error {
+    position: absolute;
+    top: 0;
+    margin: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #ffbdbd;
+    color: #960000;
+    font-size: 30px;
+    font-family: "OCR A Extended", monospace;
+}
