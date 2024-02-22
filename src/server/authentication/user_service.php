@@ -109,5 +109,3 @@ function check($mail, $pseudo)
         return $result;
     }
 }
-
-?>

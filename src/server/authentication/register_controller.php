@@ -6,6 +6,13 @@ session_start();
 global $bdd;
 $bdd = new PDO('mysql:host=localhost;dbname=base;charset=utf8;','root',"");
 
+/**
+ * Contrôleur pour le processus d'enregistrement d'un utilisateur.
+ *
+ * @param string $mail L'adresse email de l'utilisateur
+ * @param string $mdp Le mot de passe de l'utilisateur
+ * @param string $pseudo Le pseudo de l'utilisateur
+ */
 if (isset($_POST['send'])) {
     $pseudo = htmlspecialchars($_POST['pseudo']);
     $mdp = $_POST['mdp'];
@@ -38,6 +45,14 @@ if (isset($_POST['send'])) {
     }
 }
 
+/**
+ * Contrôleur intermédiaire pour valider les données d'enregistrement d'un utilisateur.
+ *
+ * @param string $mail L'adresse email de l'utilisateur
+ * @param string $mdp Le mot de passe de l'utilisateur
+ * @param string $pseudo Le pseudo de l'utilisateur
+ * @return array Un tableau contenant les erreurs de validation
+ */
 function registerController($mail, $mdp, $pseudo): array
 {
     $errors = [];
@@ -59,4 +74,3 @@ function registerController($mail, $mdp, $pseudo): array
 
     return $errors;
 }
-
