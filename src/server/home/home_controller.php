@@ -43,45 +43,6 @@ if (isset($_POST['delete'])) {
     header('Location: logout.php');
 }
 
-
-
-function pdfGenerator($template)
-{
-    require_once '../../uploads/dompdf/autoload.inc.php';
-
-    $dompdf = new Dompdf();
-    $options = new Options();
-    $options->set('isPhpEnabled', true);
-    $options->set('isHtml5ParserEnabled', true);
-    $options->set('isRemoteEnabled', true);
-    $options->set('isJavascriptEnabled', true);
-    $options->set('isCssFloatEnabled', true);
-    $options->set('defaultFont', 'Arial');
-    $options->set('isFontSubsettingEnabled', true);
-
-    $options->set('marginTop', 0);
-    $options->set('marginBottom', 0);
-    $options->set('marginLeft', 0);
-    $options->set('marginRight', 0);
-    $options->set('paddingTop', 0);
-    $options->set('paddingBottom', 0);
-    $options->set('paddingLeft', 0);
-    $options->set('paddingRight', 0);
-
-    $dompdf->setOptions($options);
-
-    ob_start();
-    include "../../template/models/" . $template;
-    $html = ob_get_clean();
-    $dompdf->loadHtml($html);
-
-    $dompdf->setPaper('A4');
-    $dompdf->render();
-
-    $dompdf->stream('cv.pdf');
-}
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     foreach ($_POST as $key => $value) {
         if (strpos($key, 'delete_preset_') === 0) {

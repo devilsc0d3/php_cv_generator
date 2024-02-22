@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Établit une connexion à la base de données MySQL.
+ *
+ * @return PDO|null L'objet PDO représentant la connexion à la base de données, ou null en cas d'erreur de connexion
+ */
 function getDBConnection(): ?PDO
 {
     try {
@@ -10,14 +15,26 @@ function getDBConnection(): ?PDO
     }
 }
 
-function addPreset($id,$name)
+/**
+ * Ajoute un préréglage pour un utilisateur donné.
+ *
+ * @param int $id L'identifiant de l'utilisateur
+ * @param string $name Le nom du préréglage à ajouter
+ */
+function addPreset($id, $name)
 {
     $bdd = getDBConnection();
     $addPreset = $bdd->prepare('INSERT INTO preset(id_user,title) VALUES(?, ?)');
-    $addPreset->execute(array($id,$name));
+    $addPreset->execute(array($id, $name));
     $bdd = null;
 }
 
+/**
+ * Supprime un préréglage et toutes les données associées.
+ *
+ * @param int $id L'identifiant du préréglage à supprimer
+ * @return mixed Le résultat de la requête DELETE
+ */
 function deletePresetAndData($id)
 {
     $bdd = getDBConnection();
@@ -27,7 +44,11 @@ function deletePresetAndData($id)
     return $result;
 }
 
-
+/**
+ * Supprime tous les préréglages d'un utilisateur donné.
+ *
+ * @param int $id L'identifiant de l'utilisateur
+ */
 function deleteAllPresetOfUser($id)
 {
     foreach (getPresets($id) as $preset) {
@@ -35,39 +56,61 @@ function deleteAllPresetOfUser($id)
     }
 }
 
+/**
+ * Récupère tous les préréglages d'un utilisateur donné.
+ *
+ * @param int $id L'identifiant de l'utilisateur
+ * @return array Les préréglages de l'utilisateur
+ */
 function getPresets($id)
 {
     $bdd = getDBConnection();
     $getPreset = $bdd->prepare('SELECT * FROM preset WHERE id_user = ?');
     $getPreset->execute(array($id));
     $result = $getPreset->fetchAll();
-    $bdd = null; // Fermer la connexion à la base de données
+    $bdd = null;
     return $result;
 }
 
+/**
+ * Supprime un utilisateur de la base de données.
+ *
+ * @param int $id L'identifiant de l'utilisateur à supprimer
+ */
 function deleteUser($id)
 {
     $bdd = getDBConnection();
     $deleteUser = $bdd->prepare('DELETE FROM user WHERE id = ?');
     $deleteUser->execute(array($id));
-    $bdd = null; // Fermer la connexion à la base de données
+    $bdd = null;
     header('Location: home.php');
 }
 
+/**
+ * Récupère l'historique des PDF générés par un utilisateur donné.
+ *
+ * @param int $userId L'identifiant de l'utilisateur
+ * @return array L'historique des PDF générés par l'utilisateur
+ */
 function getHistory($userId)
 {
     $bdd = getDBConnection();
     $getHistory = $bdd->prepare('SELECT * FROM history WHERE id_user = ?');
     $getHistory->execute(array($userId));
     $result = $getHistory->fetchAll();
-    $bdd = null; // Fermer la connexion à la base de données
+    $bdd = null;
     return $result;
 }
 
+/**
+ * Supprime une entrée d'historique de la base de données.
+ *
+ * @param int $id L'identifiant de l'entrée d'historique à supprimer
+ */
 function deleteHistory($id)
 {
     $bdd = getDBConnection();
     $deleteHistory = $bdd->prepare('DELETE FROM history WHERE id = ?');
     $deleteHistory->execute(array($id));
-    $bdd = null; // Fermer la connexion à la base de données
+    $bdd = null;
 }
