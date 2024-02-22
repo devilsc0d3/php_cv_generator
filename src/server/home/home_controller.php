@@ -120,38 +120,20 @@ function savePdfToFile($template)
     exit();
 }
 
-/**
- * Ajoute une entrée dans l'historique des CV générés.
- * @param int $userId L'identifiant de l'utilisateur.
- * @param string $pdfFileName Le nom du fichier PDF généré.
- */
-function addHistory($userId, $pdfFileName)
-{
-    global $bdd;
-    $addHistory = $bdd->prepare('INSERT INTO history (id_user, cv) VALUES (?, ?)');
-    $addHistory->execute(array($userId, $pdfFileName));
-}
-
-/**
- * Supprime une entrée de l'historique des CV générés.
- * @param int $id L'identifiant de l'entrée dans l'historique.
- */
-function deleteHistory($id)
-{
-    global $bdd;
-    $deleteHistory = $bdd->prepare('DELETE FROM history WHERE id = ?');
-    $deleteHistory->execute(array($id));
-}
-
-/**
- * Récupère les informations d'une entrée de l'historique par son identifiant.
- * @param int $id L'identifiant de l'entrée dans l'historique.
- * @return mixed Les informations de l'entrée de l'historique.
- */
-function getHistoryId($id)
-{
-    global $bdd;
-    $getHistory = $bdd->prepare('SELECT * FROM history WHERE id = ?');
-    $getHistory->execute(array($id));
-    return $getHistory->fetch();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // delete history
+    foreach ($_POST as $key => $value) {
+        if (strpos($key, 'delete_history_') === 0) {
+            $historyId = substr($key, 15);
+            $path = '../../uploads/history/' . getHistoryId($historyId)['cv'];
+            if (file_exists($path)) {
+                if (unlink($path)) {
+                    header('Location: home.php');
+                } else {
+                    echo "Erreur lors de la suppression du fichier : " . error_get_last()['message'];
+                }
+            }
+            deleteHistory($historyId);
+        }
+    }
 }

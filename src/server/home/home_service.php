@@ -103,14 +103,37 @@ function getHistory($userId)
 }
 
 /**
- * Supprime une entrée d'historique de la base de données.
- *
- * @param int $id L'identifiant de l'entrée d'historique à supprimer
+ * Ajoute une entrée dans l'historique des CV générés.
+ * @param int $userId L'identifiant de l'utilisateur.
+ * @param string $pdfFileName Le nom du fichier PDF généré.
+ */
+function addHistory($userId, $pdfFileName)
+{
+    global $bdd;
+    $addHistory = $bdd->prepare('INSERT INTO history (id_user, cv) VALUES (?, ?)');
+    $addHistory->execute(array($userId, $pdfFileName));
+}
+
+/**
+ * Supprime une entrée de l'historique des CV générés.
+ * @param int $id L'identifiant de l'entrée dans l'historique.
  */
 function deleteHistory($id)
 {
-    $bdd = getDBConnection();
+    global $bdd;
     $deleteHistory = $bdd->prepare('DELETE FROM history WHERE id = ?');
     $deleteHistory->execute(array($id));
-    $bdd = null;
+}
+
+/**
+ * Récupère les informations d'une entrée de l'historique par son identifiant.
+ * @param int $id L'identifiant de l'entrée dans l'historique.
+ * @return mixed Les informations de l'entrée de l'historique.
+ */
+function getHistoryId($id)
+{
+    global $bdd;
+    $getHistory = $bdd->prepare('SELECT * FROM history WHERE id = ?');
+    $getHistory->execute(array($id));
+    return $getHistory->fetch();
 }
